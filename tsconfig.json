@@ -7,7 +7,7 @@
     "allowJs": false,
     "jsx": "react",
     "moduleResolution": "node",
-    "rootDirs": ["src", "stories"],
+    "rootDirs": [".","src", "stories"],
     "baseUrl": "src",
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
@@ -21,6 +21,6 @@
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*","./**/*"],
   "exclude": ["node_modules", "build", "scripts"]
 }
