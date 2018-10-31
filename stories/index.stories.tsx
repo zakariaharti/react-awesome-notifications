@@ -21,15 +21,16 @@ class PlayGround extends React.Component{
 
         <Notification
           isOpen={this.state.isOpen}
-          title="notification title"
-          body="notification body"
-          onDismiss={() => console.log('hello world')}
+          title="Get ready for it !"
+          body="hello Mr. james I'm so excited about the new conf.."
+          level="default"
           duration={300}
           button={{
             label: 'comfirm',
           }}
           uid={"ml"}
         />
+
       </React.Fragment>
     )
   }

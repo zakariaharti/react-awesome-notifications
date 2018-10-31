@@ -1,25 +1,118 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import { CSSTransition } from 'react-transition-group';
+import StyledTs from 'styled-components-ts';
+
+const fontUrl = require('../assets/fonts/OpenSans-Regular.ttf');
 
 import { NotificationType } from '../../index';
 
-const StyledNotificationWrapper = styled.div``;
+interface ThemesElems{
+  primaryColor: string,
+  backgroundColor: string,
+  headerColor: string,
+  bodyColor: string,
+  buttonColor: string,
+  iconColor: string
+}
 
-const StyledNotificationContainer = styled.div``;
+interface NotificationThemes {
+  default: ThemesElems;
+  success: ThemesElems;
+  error: ThemesElems;
+  warning: ThemesElems;
+  primary: ThemesElems;
+  info: ThemesElems;
+}
 
-const StyledNotificationHeader = styled.div``;
+interface ThemeType{
+  theme?: ThemesElems;
+}
 
-const StyledNotificationBody = styled.div``;
+const StyledNotificationWrapper = styled.div`
+  @font-face{
+    font-family: 'Open Sans';
+    src: url(${fontUrl});
+  }
 
-const StyledNotificationFooter = styled.div``;
+  font-family: 'Open Sans';
+`;
+
+const StyledNotificationContainer = StyledTs<ThemeType>(styled.div)`
+  position: fixed;
+  width: 23em;
+  min-height: 5em;
+  border-radius: 6px;
+  padding: 15px 20px;
+  margin: 20px;
+  top: 0;
+  left: 0;
+  right: 0;
+  border-top: 1px solid ${props => props.theme.primaryColor};
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  background: ${props => props.theme.backgroundColor };
+`;
+
+const StyledNotificationHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  h5.notification-title{
+    font-size: 1em;
+    text-transform: capitalize;
+    color: ${props => props.theme.headerColor };
+    padding: 0;
+    margin: 0;
+  }
+
+  button.close-icon{
+    background: transparent;
+    border: none;
+    padding: 0;
+
+    span{
+      padding: 0px 6px;
+      border-radius: 50%;
+      background: ${props => props.theme.iconColor };
+      color: #ffffff;
+      font-size: 1.5em;
+    }
+  }
+`;
+
+const StyledNotificationBody = styled.div`
+  margin: 10px 0;
+  margin-bottom: 15px;
+
+  p.notification-body{
+    color: ${props => props.theme.bodyColor };
+    font-size: .8em;
+  }
+`;
+
+const StyledNotificationFooter = styled.div`
+  button{
+    border: none;
+    color: rgba(255, 255, 255, 0.84);
+    background: ${props => props.theme.buttonColor };
+    padding: 7px 29px;
+    text-transform: capitalize;
+    font-weight: bold;
+  }
+`;
 
 const NotificationTitle: React.SFC<NotificationType> = (props) => {
   if(!props.title){
     return null;
   }
 
-  return <h5 className="notification-title">{props.title}</h5>
+  return(
+    <h5 className="notification-title">
+     {props.title.length >= 35 ? props.title.slice(0,35) : props.title}
+    </h5>
+  );
 }
 
 const NotificationCloseIcon: React.SFC<NotificationType> = (props) => {
@@ -29,7 +122,7 @@ const NotificationCloseIcon: React.SFC<NotificationType> = (props) => {
 
   return(
     <div>
-      <button>
+      <button className="close-icon">
         <span>&times;</span>
       </button>
     </div>
@@ -54,16 +147,14 @@ interface NotificationState{
 class Notification extends React.Component<NotificationType,NotificationState>{
 
   state: NotificationState = {
-    isOpen: this.props.isOpen
+    isOpen: false
   }
 
   static defaultProps: NotificationType = {
     isOpen: false,
     body: '',
-    dismissDelay: 1000,
-    dismissisble: 'both',
     duration: 0,
-    level: 'primary',
+    level: 'default',
     button: null,
     position: 'tr',
     showCloseIcon: true,
@@ -72,53 +163,119 @@ class Notification extends React.Component<NotificationType,NotificationState>{
 
   timeOutDelay: any;
 
-  componentDidMount(){
-    /*if(this.props.isOpen && this.props.dismissDelay){
-      if(this.props.onDismiss){
-        this.timeOutDelay = setTimeout(
-          () => {
+  notificationThemes: NotificationThemes = {
+    default: {
+      primaryColor: 'rgb(82, 80, 80)',
+      backgroundColor: 'rgb(82, 80, 80)',
+      headerColor: '#ffffff',
+      bodyColor: 'rgba(255, 255, 255, 0.8)',
+      buttonColor: '#3a3a3a',
+      iconColor: 'transparent'
+    },
+    success: {
+      primaryColor: 'rgb(139, 195, 74)',
+      backgroundColor: 'rgb(139, 195, 74)',
+      headerColor: '#ffffff',
+      bodyColor: 'rgba(255, 255, 255, 0.8)',
+      buttonColor: '#5fab07',
+      iconColor: 'transparent'
+    },
+    error: {
+      primaryColor: 'rgb(255, 85, 73)',
+      backgroundColor: 'rgb(255, 85, 73)',
+      headerColor: '#ffffff',
+      bodyColor: 'rgba(255, 255, 255, 0.8)',
+      buttonColor: '#da1708',
+      iconColor: 'transparent'
+    },
+    warning: {
+      primaryColor: 'rgb(255, 152, 0)',
+      backgroundColor: 'rgb(255, 152, 0)',
+      headerColor: '#ffffff',
+      bodyColor: 'rgba(255, 255, 255, 0.8)',
+      buttonColor: '#d6850f',
+      iconColor: 'transparent'
+    },
+    info: {
+      primaryColor: 'rgb(84, 189, 236)',
+      backgroundColor: 'rgb(84, 189, 236)',
+      headerColor: '#ffffff',
+      bodyColor: 'rgba(255, 255, 255, 0.8)',
+      buttonColor: '#179dda',
+      iconColor: 'transparent'
+    },
+    primary: {
+      primaryColor: '#2196F3',
+      backgroundColor: '#2196F3',
+      headerColor: '#ffffff',
+      bodyColor: 'rgba(255, 255, 255, 0.84)',
+      buttonColor: '#03A9F4',
+      iconColor: ''
+    }
+  };
+
+  componentDidUpdate(prevProps: NotificationType){
+    if(prevProps.isOpen !== this.props.isOpen){
+      this.setState({ isOpen: this.props.isOpen});
+    }
+
+    if(this.state.isOpen && this.props.dismissDelay){
+      this.timeOutDelay = window.setTimeout(
+        () => {
             this.setState({ isOpen: false });
-            this.props.onDismiss();
-          },
-          this.props.dismissDelay
-        );
-      }else{
-        this.timeOutDelay = setTimeout(
-          () => {
-            this.setState({ isOpen: false });
-          },
-          this.props.dismissDelay
-        );
-      }
-    }*/
+            this.getOnDismiss();
+        },
+        this.props.dismissDelay
+      );
+    }
   }
 
   componentWillUnmount(){
-    //clearTimeout(this.timeOutDelay);
+    window.clearTimeout(this.timeOutDelay);
+  }
+
+  getOnDismiss = () => {
+    if(this.props.onDismiss && typeof this.props.onDismiss == 'function'){
+      return this.props.onDismiss();
+    }
+    return (): any => null;
+  }
+
+  getTheme = () => {
+    if(this.props.level && this.notificationThemes[this.props.level]){
+      return this.notificationThemes[this.props.level];
+    }
+
+    return 'default';
   }
 
   render(){
     return(
       <StyledNotificationWrapper>
         <CSSTransition
-          in={this.props.isOpen}
+          in={this.state.isOpen}
           classNames="notification"
           timeout={this.props.duration}
           unmountOnExit
         >
           {state => (
-            <StyledNotificationContainer>
-              <StyledNotificationHeader>
-                <NotificationTitle {...this.props} />
-                <NotificationCloseIcon {...this.props} />
-              </StyledNotificationHeader>
-              <StyledNotificationBody>
-                <p className="notification-body">{!this.props.body ? '' : this.props.body}</p>
-              </StyledNotificationBody>
-              <StyledNotificationFooter>
-                <NotificationButton {...this.props} />
-              </StyledNotificationFooter>
-            </StyledNotificationContainer>
+            <ThemeProvider theme={this.getTheme} >
+              <StyledNotificationContainer>
+                <StyledNotificationHeader>
+                  <NotificationTitle {...this.props} />
+                  <NotificationCloseIcon {...this.props} />
+                </StyledNotificationHeader>
+                <StyledNotificationBody>
+                  <p className="notification-body">
+                    {this.props.body.length >= 55 ?
+                      this.props.body.slice(0,55) : this.props.body}
+                  </p>
+                </StyledNotificationBody>
+                <StyledNotificationFooter>
+                  <NotificationButton {...this.props} />
+                </StyledNotificationFooter>
+              </StyledNotificationContainer>
+            </ThemeProvider>
           )}
         </CSSTransition>
       </StyledNotificationWrapper>

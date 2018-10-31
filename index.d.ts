@@ -5,21 +5,19 @@ export interface NotificationType{
   isOpen: boolean;
   level?: 'primary' | 'success' | 'error' | 'warning' | 'info' | 'default';
   title?: string;
-  body?: string | ReactElement<any>;
+  body?: string | any;
   position?: 'tr' | 'tl' | 'tc' | 'br' | 'bl' | 'bc';
   dismissDelay?: number;
-  onDismiss?: (not?: any) => void;
+  onDismiss?(not?: any): void;
   duration: number;
-  button: {
+  button?: {
     label: string;
     onClickEvent?: (e?: SyntheticEvent<HTMLButtonElement>) => void;
     styles?: string;
   } | null;
   showCloseIcon?: boolean;
   uid: string;
-  dismissisble?: 'both' | 'closeIcon' | 'html';
-  onAdd?: (notification?: NotificationType) => void;
-  onRemove?: (notification?: NotificationType) => void;
+  dismissOnClickOnDom?: boolean;
   styles?: {
     container: string;
     title: string;
