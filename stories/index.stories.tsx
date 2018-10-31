@@ -25,8 +25,10 @@ class PlayGround extends React.Component{
           body="hello Mr. james I'm so excited about the new conf.."
           level="default"
           duration={300}
+          onDismiss={(not) => console.log(not)}
           button={{
             label: 'comfirm',
+            onClickEvent: (not) => not.close()
           }}
           uid={"ml"}
         />

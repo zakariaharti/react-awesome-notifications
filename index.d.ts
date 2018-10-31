@@ -7,12 +7,12 @@ export interface NotificationType{
   title?: string;
   body?: string | any;
   position?: 'tr' | 'tl' | 'tc' | 'br' | 'bl' | 'bc';
-  dismissDelay?: number;
+  dismissDelay?: number | null;
   onDismiss?(not?: any): void;
   duration: number;
   button?: {
     label: string;
-    onClickEvent?: (e?: SyntheticEvent<HTMLButtonElement>) => void;
+    onClickEvent?: (e?: any) => void;
     styles?: string;
   } | null;
   showCloseIcon?: boolean;

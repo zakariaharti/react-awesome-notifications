@@ -36,6 +36,28 @@ const StyledNotificationWrapper = styled.div`
   }
 
   font-family: 'Open Sans';
+
+  .notification-enter{
+    transition: all .3s ease-out;
+    opacity: .1;
+    transform: translateX(-80em);
+  }
+
+  .notification-enter-active{
+    transition: all .3s ease-out;
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .notification-exit{
+    transition: all .3s ease-out;
+    opacity: 1;
+  }
+
+  .notification-exit-active{
+    transition: all .3s ease-out;
+    opacity: 0;
+  }
 `;
 
 const StyledNotificationContainer = StyledTs<ThemeType>(styled.div)`
@@ -45,7 +67,7 @@ const StyledNotificationContainer = StyledTs<ThemeType>(styled.div)`
   border-radius: 6px;
   padding: 15px 20px;
   margin: 20px;
-  top: 0;
+  top: auto;
   left: 0;
   right: 0;
   border-top: 1px solid ${props => props.theme.primaryColor};
@@ -115,27 +137,17 @@ const NotificationTitle: React.SFC<NotificationType> = (props) => {
   );
 }
 
-const NotificationCloseIcon: React.SFC<NotificationType> = (props) => {
+const NotificationCloseIcon: React.SFC<NotificationType & {onClick: () => void}> = (props) => {
   if(!props.showCloseIcon){
     return null;
   }
 
   return(
     <div>
-      <button className="close-icon">
+      <button className="close-icon" onClick={props.onClick}>
         <span>&times;</span>
       </button>
     </div>
-  )
-}
-
-const NotificationButton: React.SFC<NotificationType> = (props) => {
-  if(!props.button){
-    return null;
-  }
-
-  return(
-    <button onClick={props.button.onClickEvent}>{props.button.label}</button>
   )
 }
 
@@ -153,7 +165,8 @@ class Notification extends React.Component<NotificationType,NotificationState>{
   static defaultProps: NotificationType = {
     isOpen: false,
     body: '',
-    duration: 0,
+    duration: 300,
+    dismissDelay: 4000,
     level: 'default',
     button: null,
     position: 'tr',
@@ -222,7 +235,7 @@ class Notification extends React.Component<NotificationType,NotificationState>{
     if(this.state.isOpen && this.props.dismissDelay){
       this.timeOutDelay = window.setTimeout(
         () => {
-            this.setState({ isOpen: false });
+            this.close();
             this.getOnDismiss();
         },
         this.props.dismissDelay
@@ -236,7 +249,14 @@ class Notification extends React.Component<NotificationType,NotificationState>{
 
   getOnDismiss = () => {
     if(this.props.onDismiss && typeof this.props.onDismiss == 'function'){
-      return this.props.onDismiss();
+      return this.props.onDismiss(this);
+    }
+    return (): any => null;
+  }
+
+  getOnButtonClickEvent = () => {
+    if(this.props.button.onClickEvent && typeof this.props.button.onClickEvent == 'function'){
+      return this.props.button.onClickEvent(this);
     }
     return (): any => null;
   }
@@ -247,6 +267,12 @@ class Notification extends React.Component<NotificationType,NotificationState>{
     }
 
     return 'default';
+  }
+
+  close = () => {
+    if(this.state.isOpen){
+      this.setState({ isOpen: false });
+    }
   }
 
   render(){
@@ -263,7 +289,7 @@ class Notification extends React.Component<NotificationType,NotificationState>{
               <StyledNotificationContainer>
                 <StyledNotificationHeader>
                   <NotificationTitle {...this.props} />
-                  <NotificationCloseIcon {...this.props} />
+                  <NotificationCloseIcon onClick={() => this.close()} {...this.props} />
                 </StyledNotificationHeader>
                 <StyledNotificationBody>
                   <p className="notification-body">
@@ -272,7 +298,14 @@ class Notification extends React.Component<NotificationType,NotificationState>{
                   </p>
                 </StyledNotificationBody>
                 <StyledNotificationFooter>
-                  <NotificationButton {...this.props} />
+                  {
+                    this.props.button &&
+                    <button
+                      onClick={this.getOnButtonClickEvent}
+                    >
+                      {this.props.button.label}
+                    </button>
+                  }
                 </StyledNotificationFooter>
               </StyledNotificationContainer>
             </ThemeProvider>
