@@ -1,14 +1,14 @@
-import { ReactElement, SyntheticEvent } from 'react';
+import { ReactElement, SyntheticEvent, StatelessComponent, Component  } from 'react';
 
 
 export interface NotificationType{
   isOpen: boolean;
   level?: 'primary' | 'success' | 'error' | 'warning' | 'info' | 'default';
   title?: string;
-  body?: string | any;
+  body?: string;
   position?: 'tr' | 'tl' | 'tc' | 'br' | 'bl' | 'bc';
   dismissDelay?: number | null;
-  onDismiss?(not?: any): void;
+  onDismiss?(): void;
   duration: number;
   button?: {
     label: string;
@@ -17,12 +17,11 @@ export interface NotificationType{
   } | null;
   showCloseIcon?: boolean;
   uid: string;
-  dismissOnClickOnDom?: boolean;
-  styles?: {
-    container: string;
-    title: string;
-    body: string;
-  }
+  extendContainerStyles?: string;
+  extendTitleStyles?: string;
+  extendBodyStyles?: string;
+  enableAnimation?: boolean;
+  animationClassNames?: string;
 }
 
 export interface NotificationStackType{

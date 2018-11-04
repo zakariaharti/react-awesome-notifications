@@ -29,7 +29,11 @@ interface ThemeType{
   theme?: ThemesElems;
 }
 
-const StyledNotificationWrapper = styled.div`
+interface PositionType{
+  position: 'tr' | 'tl' | 'tc' | 'br' | 'bl' | 'bc';
+}
+
+const StyledNotificationWrapper = StyledTs<PositionType & {enableAnimation: boolean}>(styled.div)`
   @font-face{
     font-family: 'Open Sans';
     src: url(${fontUrl});
@@ -40,13 +44,33 @@ const StyledNotificationWrapper = styled.div`
   .notification-enter{
     transition: all .3s ease-out;
     opacity: .1;
-    transform: translateX(-80em);
+    transform: translate(${props => {
+       if(props.position == 'tl' || props.position == 'bl'){
+         return '80em';
+       }
+       if(props.position == 'tr' || props.position == 'br'){
+         return '-80em';
+       }
+       return '0';
+    }}, ${props => {
+       if(props.position == 'tc'){
+          return '-80em';
+       }
+       if(props.position == 'bc'){
+          return '80em';
+       }
+       return '0';
+     }});
   }
 
   .notification-enter-active{
     transition: all .3s ease-out;
     opacity: 1;
-    transform: translateX(0);
+    transform: translate(0,0);
+  }
+
+  .notification-enter-done{
+
   }
 
   .notification-exit{
@@ -58,36 +82,47 @@ const StyledNotificationWrapper = styled.div`
     transition: all .3s ease-out;
     opacity: 0;
   }
+
+  .notification-exit-done{
+
+  }
 `;
 
-const StyledNotificationContainer = StyledTs<ThemeType>(styled.div)`
+const StyledNotificationContainer = StyledTs<ThemeType & PositionType>(styled.div)`
   position: fixed;
   width: 23em;
   min-height: 5em;
   border-radius: 6px;
   padding: 15px 20px;
   margin: 20px;
-  top: auto;
-  left: 0;
-  right: 0;
+  top: ${props => props.position == 'br' ||
+  props.position == 'bc' || props.position == 'bl' ? 'auto' : '0'};
+  left: ${props => {
+    if(props.position == 'tl' || props.position == 'bl'){
+      return 'auto';
+    }
+    if(props.position == 'tc' || props.position == 'bc'){
+      return '25%';
+    }
+    return '0';
+  }};
+  right: ${props => props.position == 'br' || props.position == 'bc' ? 'auto' : '0'};
+  bottom: ${props => props.position == 'br'
+  || props.position == 'bc' || props.position == 'bl' ? '0' : 'auto'};
   border-top: 1px solid ${props => props.theme.primaryColor};
   border-top-left-radius: 0;
   border-top-right-radius: 0;
   background: ${props => props.theme.backgroundColor };
 `;
 
+const StyledExtendedContainer = StyledTs<PositionType & { exStyles: string}>(styled(StyledNotificationContainer))`
+  ${props => props.exStyles }
+`;
+
 const StyledNotificationHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-
-  h5.notification-title{
-    font-size: 1em;
-    text-transform: capitalize;
-    color: ${props => props.theme.headerColor };
-    padding: 0;
-    margin: 0;
-  }
 
   button.close-icon{
     background: transparent;
@@ -100,41 +135,86 @@ const StyledNotificationHeader = styled.div`
       background: ${props => props.theme.iconColor };
       color: #ffffff;
       font-size: 1.5em;
+      cursor: pointer;
+      outline: none;
+      transition: .1s ease-out;
+
+      &:hover{
+        color: rgba(255, 255, 255, 0.88);
+      }
     }
   }
+`;
+
+const StyledTitle = styled.div`
+  font-size: 1em;
+  text-transform: capitalize;
+  color: ${props => props.theme.headerColor };
+  padding: 0;
+  margin: 0;
+`;
+
+const StyledExtendedTitle = StyledTs<{ exStyles: string}>(styled(StyledTitle))`
+  ${props => props.exStyles }
 `;
 
 const StyledNotificationBody = styled.div`
   margin: 10px 0;
   margin-bottom: 15px;
+`;
 
-  p.notification-body{
-    color: ${props => props.theme.bodyColor };
-    font-size: .8em;
-  }
+const StyledParagraph = styled.div`
+  color: ${props => props.theme.bodyColor };
+  font-size: .8em;
+`;
+
+const StyledExtendedParagraph = StyledTs<{ exStyles: string}>(styled(StyledParagraph))`
+  ${props => props.exStyles }
 `;
 
 const StyledNotificationFooter = styled.div`
-  button{
-    border: none;
-    color: rgba(255, 255, 255, 0.84);
-    background: ${props => props.theme.buttonColor };
-    padding: 7px 29px;
-    text-transform: capitalize;
-    font-weight: bold;
-  }
+  display: flex;
 `;
 
-const NotificationTitle: React.SFC<NotificationType> = (props) => {
+const StyledButton = styled.div`
+  border: none;
+  color: rgba(255, 255, 255, 0.84);
+  background: ${props => props.theme.buttonColor };
+  padding: 7px 29px;
+  text-transform: capitalize;
+  font-weight: bold;
+`;
+
+const StyledExtendedButton = StyledTs<{ExStyles: string}>(styled(StyledButton))`
+  ${props => props.ExStyles}
+`;
+
+const NotificationTitle: React.SFC<NotificationType & {exStyles: string}> = (props) => {
   if(!props.title){
     return null;
   }
 
   return(
-    <h5 className="notification-title">
-     {props.title.length >= 35 ? props.title.slice(0,35) : props.title}
-    </h5>
+    <StyledExtendedTitle exStyles={props.exStyles} {...props} >
+      {props.title.length >= 35 ? props.title.slice(0,35) : props.title}
+    </StyledExtendedTitle>
   );
+}
+
+const NotificationBody: React.SFC<NotificationType & {exStyles: string}> = (props) => {
+  if(!props.body){
+    return null;
+  }
+
+  if(typeof props.body === 'string'){
+    return(
+      <StyledExtendedParagraph exStyles={props.exStyles} {...props} >
+        {props.body}
+      </StyledExtendedParagraph>
+    )
+  }
+
+  return null;
 }
 
 const NotificationCloseIcon: React.SFC<NotificationType & {onClick: () => void}> = (props) => {
@@ -164,6 +244,7 @@ class Notification extends React.Component<NotificationType,NotificationState>{
 
   static defaultProps: NotificationType = {
     isOpen: false,
+    title: '',
     body: '',
     duration: 300,
     dismissDelay: 4000,
@@ -171,12 +252,17 @@ class Notification extends React.Component<NotificationType,NotificationState>{
     button: null,
     position: 'tr',
     showCloseIcon: true,
-    uid: ''
+    uid: '',
+    extendBodyStyles: '',
+    extendContainerStyles: '',
+    extendTitleStyles: '',
+    enableAnimation: true,
+    animationClassNames: 'notification'
   }
 
-  timeOutDelay: any;
+  private timeOutDelay: any;
 
-  notificationThemes: NotificationThemes = {
+  private notificationThemes: NotificationThemes = {
     default: {
       primaryColor: 'rgb(82, 80, 80)',
       backgroundColor: 'rgb(82, 80, 80)',
@@ -236,7 +322,6 @@ class Notification extends React.Component<NotificationType,NotificationState>{
       this.timeOutDelay = window.setTimeout(
         () => {
             this.close();
-            this.getOnDismiss();
         },
         this.props.dismissDelay
       );
@@ -247,21 +332,23 @@ class Notification extends React.Component<NotificationType,NotificationState>{
     window.clearTimeout(this.timeOutDelay);
   }
 
-  getOnDismiss = () => {
+  private getPosition = () => this.props.position;
+
+  private getOnDismiss = () => {
     if(this.props.onDismiss && typeof this.props.onDismiss == 'function'){
-      return this.props.onDismiss(this);
+      return this.props.onDismiss();
     }
     return (): any => null;
   }
 
-  getOnButtonClickEvent = () => {
+  private getOnButtonClickEvent = () => {
     if(this.props.button.onClickEvent && typeof this.props.button.onClickEvent == 'function'){
       return this.props.button.onClickEvent(this);
     }
     return (): any => null;
   }
 
-  getTheme = () => {
+  private getTheme = () => {
     if(this.props.level && this.notificationThemes[this.props.level]){
       return this.notificationThemes[this.props.level];
     }
@@ -269,45 +356,59 @@ class Notification extends React.Component<NotificationType,NotificationState>{
     return 'default';
   }
 
+  private getButtonExtendedStyles = () => {
+    if(this.props.button.styles && typeof this.props.button.styles == 'string'){
+      return this.props.button.styles;
+    }
+    return ``;
+  }
+
   close = () => {
     if(this.state.isOpen){
       this.setState({ isOpen: false });
+      this.getOnDismiss();
     }
   }
 
   render(){
     return(
-      <StyledNotificationWrapper>
+      <StyledNotificationWrapper
+        enableAnimation={this.props.enableAnimation}
+        position={this.getPosition()}>
         <CSSTransition
           in={this.state.isOpen}
-          classNames="notification"
+          classNames={this.props.animationClassNames}
           timeout={this.props.duration}
           unmountOnExit
         >
           {state => (
             <ThemeProvider theme={this.getTheme} >
-              <StyledNotificationContainer>
+              <StyledExtendedContainer
+                exStyles={this.props.extendContainerStyles || ''}
+                position={this.getPosition()} >
                 <StyledNotificationHeader>
-                  <NotificationTitle {...this.props} />
+                  <NotificationTitle
+                    exStyles={this.props.extendTitleStyles || ''}
+                    {...this.props} />
                   <NotificationCloseIcon onClick={() => this.close()} {...this.props} />
                 </StyledNotificationHeader>
                 <StyledNotificationBody>
-                  <p className="notification-body">
-                    {this.props.body.length >= 55 ?
-                      this.props.body.slice(0,55) : this.props.body}
-                  </p>
+                  <NotificationBody
+                    exStyles={this.props.extendBodyStyles || ''}
+                    {...this.props} />
                 </StyledNotificationBody>
                 <StyledNotificationFooter>
                   {
                     this.props.button &&
-                    <button
+                    <StyledExtendedButton
+                      ExStyles={this.getButtonExtendedStyles()}
                       onClick={this.getOnButtonClickEvent}
                     >
                       {this.props.button.label}
-                    </button>
+                    </StyledExtendedButton>
                   }
                 </StyledNotificationFooter>
-              </StyledNotificationContainer>
+              </StyledExtendedContainer>
             </ThemeProvider>
           )}
         </CSSTransition>

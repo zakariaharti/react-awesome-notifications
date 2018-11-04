@@ -22,14 +22,11 @@ class PlayGround extends React.Component{
         <Notification
           isOpen={this.state.isOpen}
           title="Get ready for it !"
-          body="hello Mr. james I'm so excited about the new conf.."
-          level="default"
+          body={'Uopn a homely object love can wink !!'}
+          level="primary"
           duration={300}
-          onDismiss={(not) => console.log(not)}
-          button={{
-            label: 'comfirm',
-            onClickEvent: (not) => not.close()
-          }}
+          dismissDelay={null}
+          onDismiss={() => console.log('dismissed')}
           uid={"ml"}
         />
 
