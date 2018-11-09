@@ -1,41 +1,109 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 //import { action } from '@storybook/addon-actions';
+import { withInfo } from '@storybook/addon-info';
+import styled from 'styled-components';
 
-import Notification from '../src/components/Notification';
+// @ts-ignore
+import Notification from '../src/Components/Notification';
+//import NotificationStack from '../src/components/NotificationStack';
 
-const stories = storiesOf('Components', module);
+// @ts-ignore
+const stories = storiesOf('Notification basic usage', module).addDecorator(withInfo);
 
-class PlayGround extends React.Component{
+class PlayGround extends React.Component<{render:any}>{
 
   state = {
-    isOpen: false
+    isOpen: false,
+    nots: [
+      {
+        level: 'primary',
+        title: 'hello world',
+        body: 'body text is coming soon',
+        uid: '123',
+        duration: 4000,
+        button: {
+          label: 'comfirm'
+        }
+      },
+      {
+        level: 'error',
+        title: 'hello world',
+        body: 'body text is coming soon',
+        uid: '124',
+        button: {
+          label: 'comfirm'
+        }
+      },
+      {
+        level: 'success',
+        title: 'hello world',
+        body: 'body text is coming soon',
+        uid: '125',
+        button: {
+          label: 'comfirm'
+        }
+      }
+    ],
+    exampleOne: {
+      level: 'primary',
+      title: 'hello world',
+      body: 'upon a homely object love can wink!!',
+      uid: '123',
+      duration: 4000,
+      button: {
+        label: 'got it!'
+      }
+    }
   }
 
-  onClick = () => this.setState({ isOpen: true });
+  onClick = () => this.setState({ isOpen: !this.state.isOpen });
 
   render(){
-    return(
-      <React.Fragment>
-        <button onClick={this.onClick}>click me!</button>
-
-        <Notification
-          isOpen={this.state.isOpen}
-          title="Get ready for it !"
-          body={'Uopn a homely object love can wink !!'}
-          level="primary"
-          duration={300}
-          dismissDelay={null}
-          onDismiss={() => console.log('dismissed')}
-          uid={"ml"}
-        />
-
-      </React.Fragment>
-    )
+    return this.props.render(this.state,this.onClick)
   }
 }
 
-stories.add(
+const StyledContainer = styled.div`
+  height: 100%;
+  width: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15em 0;
+
+  .btn-not{
+    padding: 10px 20px;
+    text-transform: capitalize;
+    color: #ffffff;
+    border: none;
+    background: #03A9F4;
+    font-size: 1.2em;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: .3s ease-out;
+
+    &:hover{
+      background-color: #077fb5;
+    }
+  }
+`;
+
+stories
+.add(
   'Notification component',
-  () => <PlayGround />
+  () => <PlayGround render={(state: any,onClick: any) => {
+    return(
+      <StyledContainer>
+        <button className="btn-not" onClick={onClick}>click me!</button>
+
+        <Notification
+          isOpen={state.isOpen}
+          {...state.exampleOne}
+        />
+
+      </StyledContainer>
+    )
+  }} />
 );

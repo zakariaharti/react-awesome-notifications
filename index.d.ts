@@ -2,14 +2,14 @@ import { ReactElement, SyntheticEvent, StatelessComponent, Component  } from 're
 
 
 export interface NotificationType{
-  isOpen: boolean;
-  level?: 'primary' | 'success' | 'error' | 'warning' | 'info' | 'default';
+  isOpen?: boolean;
+  level?: string | 'primary' | 'success' | 'error' | 'warning' | 'info' | 'default';
   title?: string;
   body?: string;
   position?: 'tr' | 'tl' | 'tc' | 'br' | 'bl' | 'bc';
   dismissDelay?: number | null;
   onDismiss?(): void;
-  duration: number;
+  duration?: number;
   button?: {
     label: string;
     onClickEvent?: (e?: any) => void;
@@ -27,7 +27,5 @@ export interface NotificationType{
 export interface NotificationStackType{
   isOpen: boolean;
   notifications: NotificationType[];
-  addNotification?: (not: NotificationType) => void;
-  removeNotification?: (not: NotificationType) => void;
-  closeNotifications?: (not: NotificationType) => void;
+  extendStyles?: string;
 }

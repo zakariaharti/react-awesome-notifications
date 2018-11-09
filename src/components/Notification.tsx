@@ -3,7 +3,7 @@ import styled, { ThemeProvider } from 'styled-components';
 import { CSSTransition } from 'react-transition-group';
 import StyledTs from 'styled-components-ts';
 
-const fontUrl = require('../assets/fonts/OpenSans-Regular.ttf');
+const fontUrl = /*require('../assets/fonts/OpenSans-Regular.ttf')*/ '';
 
 import { NotificationType } from '../../index';
 
@@ -374,7 +374,9 @@ class Notification extends React.Component<NotificationType,NotificationState>{
     return(
       <StyledNotificationWrapper
         enableAnimation={this.props.enableAnimation}
-        position={this.getPosition()}>
+        position={this.getPosition()}
+        id="awesome-notification-wrapper"
+        >
         <CSSTransition
           in={this.state.isOpen}
           classNames={this.props.animationClassNames}
@@ -384,6 +386,7 @@ class Notification extends React.Component<NotificationType,NotificationState>{
           {state => (
             <ThemeProvider theme={this.getTheme} >
               <StyledExtendedContainer
+                className="awesome-notification-container"
                 exStyles={this.props.extendContainerStyles || ''}
                 position={this.getPosition()} >
                 <StyledNotificationHeader>
