@@ -4,8 +4,14 @@
 
 This component is available as CommonJS and UMD module. Install via NPM running:
 
+** npm **
 ```
-npm install awesome-rect-notifiction
+npm install react-awesome-notifications
+```
+
+** yarn **
+```
+yarn add react-awesome-notifications
 ```
 
 ## live demo
