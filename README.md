@@ -29,7 +29,7 @@ Here is a basic example. For a more advanced usage, please see the [example code
 ```js
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import Notification from 'awesome-react-notifiction';
+import {Notification} from 'awesome-react-notifications';
 
 class MyComponent extends React.Component{
   state = {
@@ -70,12 +70,12 @@ ReactDOM.render(
 );
 ```
 
-# for more than one notifiction you should use NotificationStack
+# for more than one notification you should use NotificationStack
 
 ```js
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import NotificationStack from 'awesome-react-notifiction';
+import {NotificationStack} from 'awesome-react-notifications';
 
 class MyComponent extends React.Component{
   state = {
@@ -173,8 +173,8 @@ The notification object has the following properties:
 | position     | string          | tr        | Position of the notification. Available: **tr (top right)**, **tl (top left)**, **tc (top center)**, **br (bottom right)**, **bl (bottom left)**, **bc (bottom center)**  |
 | dismissDelay  | integer         | 4         | Delay in seconds for the notification go away. Set this to null for forever notifiction                                                                      |
 | button  | object          | null      | wether to display the button or not it takes an object of the chape {label: string, onClickEvent: callback,styles: string}                                                                         |
-| onDismiss       | function          | null      | Add a callback to be called right after the dismiss of the notifiction                                                                                                        |
-| duration       | integer          | null      | the duration of the notifiction to display                                                                                                      |
+| onDismiss       | function          | null      | Add a callback to be called right after the dismiss of the notification                                                                                                        |
+| duration       | integer          | null      | the duration of the notification to display                                                                                                      |
 | showCloseIcon | boolean | true | wether or not to display the close icon |
 | extendContainerStyles     | string        | null      | extend the Container styles |
 | extendTitleStyles     | string        | null      | extend the title styles |
@@ -186,7 +186,7 @@ The notification object has the following properties:
 
 ### Dismissible
 
-If set to null, the notifiction will not be dismissed unless dismissDelay is assigned a specefic duration. [See more](#removenotificationnotification)
+If set to null, the notification will not be dismissed unless dismissDelay is assigned a specefic duration. [See more](#removenotificationnotification)
 
 ### Button
 
