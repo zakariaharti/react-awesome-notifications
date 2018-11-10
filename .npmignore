@@ -1,0 +1,4 @@
+.storybook
+/stories
+/storybook-static
+yarn-error.log
