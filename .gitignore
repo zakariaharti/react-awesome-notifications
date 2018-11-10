@@ -1,3 +1,6 @@
 /node_modules
 /dist
-yarn.lock
+.storybook
+/stories
+/storybook-static
+yarn-error.log
