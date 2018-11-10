@@ -4,12 +4,12 @@
 
 This component is available as CommonJS and UMD module. Install via NPM running:
 
-** npm **
+**npm**
 ```
 npm install react-awesome-notifications
 ```
 
-** yarn **
+**yarn**
 ```
 yarn add react-awesome-notifications
 ```
