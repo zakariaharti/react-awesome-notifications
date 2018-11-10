@@ -1,4 +1,4 @@
-> A beautiful fully customizable React notifictions Component
+> A beautiful fully customizable React notifications Component
 
 ## Installing for **React ^16.x**
 
