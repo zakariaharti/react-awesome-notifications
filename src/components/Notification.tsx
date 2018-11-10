@@ -3,7 +3,7 @@ import styled, { ThemeProvider } from 'styled-components';
 import { CSSTransition } from 'react-transition-group';
 import StyledTs from 'styled-components-ts';
 
-const fontUrl = /*require('../assets/fonts/OpenSans-Regular.ttf')*/ '';
+const fontUrl = require('../assets/fonts/OpenSans-Regular.ttf');
 
 import { NotificationType } from '../../index';
 
@@ -236,7 +236,7 @@ interface NotificationState{
 }
 
 
-class Notification extends React.Component<NotificationType,NotificationState>{
+class NotificationComp extends React.Component<NotificationType,NotificationState>{
 
   state: NotificationState = {
     isOpen: false
@@ -420,4 +420,4 @@ class Notification extends React.Component<NotificationType,NotificationState>{
   }
 };
 
-export default Notification;
+export default NotificationComp;

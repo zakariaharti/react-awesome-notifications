@@ -17,6 +17,8 @@ const StyledNotificationStack = styled.div`
    width: 26em;
    overflow: hidden;
    justify-content: center;
+   left: 0;
+   top: 0;
 `;
 
 const StyledExtendedNotificationStack = StyledTs<{extendStyles: string}>(styled(StyledNotificationStack))`

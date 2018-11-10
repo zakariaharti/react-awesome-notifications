@@ -7,6 +7,7 @@
   "license": "MIT",
   "private": false,
   "devDependencies": {
+    "@storybook/addon-actions": "^4.0.4",
     "@storybook/addon-info": "^4.0.0",
     "@storybook/react": "^4.0.0",
     "@types/enzyme": "^3.1.14",
@@ -55,7 +56,7 @@
     "webpack": "webpack --config webpack.dev.js",
     "start": "react-scripts-ts start",
     "tslint": "tslint",
-    "build": "npm run lint && npm run build-lib && build-storybook",
+    "build": "npm run tsc && build-storybook",
     "build-lib-watch": "tsc -w",
     "build-lib": "tsc && npm run copy-css-to-lib && npm run copy-svg-to-lib && npm run copy-png-to-lib && npm run copy-woff2-to-lib",
     "test": "jest --watch",
