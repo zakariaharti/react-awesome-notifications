@@ -1,18 +1,28 @@
-> A beautiful fully customizable React notifictions Component
+> A beautiful fully customizable React notifications Component
 
 ## Installing for **React ^16.x**
 
 This component is available as CommonJS and UMD module. Install via NPM running:
 
+**npm**
 ```
-npm install awesome-rect-notifiction
+npm install react-awesome-notifications
 ```
+
+**yarn**
+```
+yarn add react-awesome-notifications
+```
+
+## live demo
+
+please see the [example code](https://zakariaharti.github.io/docs-react-awesome-notification).
 
 ## Using
 
 For optimal appearance, this component **must be rendered on a top level HTML element** in your application to avoid position conflicts.
 
-Here is a basic example. For a more advanced usage, please see the [example code](https://github.com/igorprado/react-notification-system/blob/master/example/src/scripts/App.jsx).
+Here is a basic example. For a more advanced usage, please see the [example code](https://zakariaharti.github.io/docs-react-awesome-notification).
 
 # for simple usage
 
