@@ -1,16 +1,13 @@
 const merge = require('webpack-merge');
 const common = require('./webpack.common');
+const path = require('path');
 
 module.exports = merge(common,{
   mode: 'production',
-  output: {
-    filename: '[name].[contenthash].js',
-    path: path.resolve(__dirname,'dist')
-  },
   module: {
     rules: [
       {
-        test: /\.(ttf,woff)$/,
+        test: /\.(ttf|woff)$/,
         use: [
           {
             loader: 'file-loader',
