@@ -1,4 +1,5 @@
 .storybook
 /stories
 /storybook-static
+/src
 yarn-error.log

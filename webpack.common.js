@@ -8,7 +8,7 @@ module.exports = {
     app: './src/index.tsx'
   },
   output: {
-    filename: '[name].bundle.js',
+    filename: 'app.js',
     path: path.resolve(__dirname,'build'),
     library: 'react-awesome-notifications'
   },
