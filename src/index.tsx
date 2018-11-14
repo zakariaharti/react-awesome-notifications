@@ -1,2 +1,4 @@
-export { default as Notification } from './components/Notification';
-export { default as NotificationStack } from './components/NotificationStack';
+import Notification from './components/Notification';
+import NotificationStack from './components/NotificationStack';
+
+export {Notification, NotificationStack};

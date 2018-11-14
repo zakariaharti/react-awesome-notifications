@@ -4,13 +4,15 @@ const path = require('path');
 
 module.exports = {
   mode: "development",
+  devtool: 'hidden-source-map',
   entry: {
     app: './src/index.tsx'
   },
   output: {
-    filename: 'app.js',
+    filename: 'index.js',
     path: path.resolve(__dirname,'build'),
-    library: 'react-awesome-notifications'
+    library: 'react-awesome-notifications',
+    libraryTarget: 'commonjs'
   },
   resolve: {
     extensions: ['.ts','.tsx','.js','.jsx']
@@ -36,23 +38,9 @@ module.exports = {
     ]
   },
   plugins: [
-    new CleanPlugin(['dist']),
+    new CleanPlugin(['build']),
     new TSLintPlugin({
       files: ['./src/**/*.ts']
     })
-  ],
-  externals: {
-     react: {
-       commonjs: 'react',
-       commonjs2: 'react',
-       amd: 'react',
-       root: '_'
-     },
-     'react-dom': {
-       commonjs: 'react-dom',
-       commonjs2: 'react-dom',
-       amd: 'react',
-       root: '_'
-     }
-   }
+  ]
 }

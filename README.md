@@ -1,3 +1,5 @@
+## WARNING: this package is under maintenance you should not use it now
+
 > A beautiful fully customizable React notifications Component
 
 ## Installing for **React ^16.x**

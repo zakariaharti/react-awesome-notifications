@@ -1,7 +1,7 @@
 {
   "name": "react-awesome-notifications",
-  "version": "1.1.2",
-  "main": "./build/app.js",
+  "version": "1.1.6",
+  "main": "./build/index.js",
   "repository": "https://github.com/zakariaharti/react-awesome-notifications.git",
   "author": "zakaria harti <zakariya.harti@gmail.com> (https://github.com/zakariaharti)",
   "license": "MIT",
