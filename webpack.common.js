@@ -3,16 +3,13 @@ const TSLintPlugin = require('tslint-webpack-plugin');
 const path = require('path');
 
 module.exports = {
-  mode: "development",
-  devtool: 'hidden-source-map',
   entry: {
     app: './src/index.tsx'
   },
   output: {
     filename: 'index.js',
     path: path.resolve(__dirname,'build'),
-    library: 'react-awesome-notifications',
-    libraryTarget: 'commonjs'
+    library: 'react-notifiable',
   },
   resolve: {
     extensions: ['.ts','.tsx','.js','.jsx']
@@ -23,17 +20,6 @@ module.exports = {
          test: /\.(tsx|ts)?$/,
          use: 'awesome-typescript-loader',
          exclude: '/node_modules'
-       },
-       {
-         test: /\.(ttf|woff)$/,
-         use: [
-           {
-             loader: 'file-loader',
-             options: {
-               name: 'fonts/[hash].[ext]'
-             }
-           }
-         ]
        }
     ]
   },

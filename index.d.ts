@@ -1,31 +1,36 @@
-import { ReactElement, SyntheticEvent, StatelessComponent, Component  } from 'react';
+declare namespace ReactNotifiable {
+  export interface INotification{
+    id: string;
+    title?: string;
+    message?: string;
+    level: 'primary' | 'success' | 'info' | 'warning' | 'error';
+    position: ReactNotifiable.notificationPosition;
+    dismissAfter: number | null;
+    dismissible: boolean;
+    onMounted?: () => void;
+    onUnmounted?: () => void;
+    closeButton?: boolean;
+    buttons?: {
+      label: string,
+      action: (notification: Notification) => void,
+    }[];
+    allowHTML?: boolean;
+  }
 
+  export const enum notificationLevel{
+    PRIMARY = 'primary',
+    SUCCESS = 'success',
+    INFO = 'info',
+    WARNING = 'warning',
+    ERROR = 'error'
+  }
 
-export interface NotificationType{
-  isOpen?: boolean;
-  level?: string | 'primary' | 'success' | 'error' | 'warning' | 'info' | 'default';
-  title?: string;
-  body?: string;
-  position?: 'tr' | 'tl' | 'tc' | 'br' | 'bl' | 'bc';
-  dismissDelay?: number | null;
-  onDismiss?(): void;
-  duration?: number;
-  button?: {
-    label: string;
-    onClickEvent?: (e?: any) => void;
-    styles?: string;
-  } | null;
-  showCloseIcon?: boolean;
-  uid: string;
-  extendContainerStyles?: string;
-  extendTitleStyles?: string;
-  extendBodyStyles?: string;
-  enableAnimation?: boolean;
-  animationClassNames?: string;
-}
-
-export interface NotificationStackType{
-  isOpen: boolean;
-  notifications: NotificationType[];
-  extendStyles?: string;
+  export const enum notificationPosition{
+    TOP_RIGHT = 't',
+    TOP_CENTER = 'tc',
+    TOP_LEFT = 'tl',
+    BOTTOM_RIGHT = 'br',
+    BOTTOM_LEFT = 'bl',
+    BOTTOM_CENTER = 'bc'
+  }
 }
