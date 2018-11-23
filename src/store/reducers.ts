@@ -55,6 +55,7 @@ const reducer = (state: ReactNotifiable.INotification[] | [] = defaultState, act
       return [];
     break;
 
+
     default:
       return state;
   }

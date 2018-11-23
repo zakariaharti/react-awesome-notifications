@@ -1,5 +1,5 @@
 export interface IRootState{
-  notifications: ReactNotifiable.INotification[] | [];
+  notifications: ReactNotifiable.INotification[];
 }
 
 export enum actionTypes {
