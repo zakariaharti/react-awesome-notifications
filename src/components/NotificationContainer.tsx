@@ -10,7 +10,7 @@ interface NotificationContainerProps{
     enterTimeout ?: number,
     leaveTimeout ?: number
   };
-  position ?: ReactNotifiable.notificationPosition;
+  position ?: string;
 }
 
 /**
