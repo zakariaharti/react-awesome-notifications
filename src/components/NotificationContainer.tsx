@@ -2,6 +2,7 @@ import * as React from 'react';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 import Notification from './Notification';
+import { StyledNotificationContainer } from './StyledComponents/StyledNotificationContainer';
 
 interface NotificationContainerProps{
   notifications: ReactNotifiable.INotification[];
@@ -25,7 +26,7 @@ const NotificationContainer: React.SFC<NotificationContainerProps> = (props) => 
   } = props;
 
   return(
-    <div className="main">
+    <StyledNotificationContainer>
       <TransitionGroup>
         {notifications.map(notification => (
           <CSSTransition
@@ -43,7 +44,7 @@ const NotificationContainer: React.SFC<NotificationContainerProps> = (props) => 
           </CSSTransition>
         ))}
       </TransitionGroup>
-    </div>
+    </StyledNotificationContainer>
   )
 };
 

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import { removeNotification } from '../store/actionCreators';
 import { IRemoveNotification } from '../store/types';
+import { StyledNotification } from './StyledComponents/StyledNotification';
 
 interface NotificationProps{
   notification: ReactNotifiable.INotification;
@@ -128,7 +129,7 @@ class Notification extends React.Component<NotificationProps,NotificationState>{
       title
     } = this.props.notification;
     return(
-      <div
+      <StyledNotification
         className="wrapper"
         onClick={dismissible && !closeButton ? this.close : null}
       >
@@ -172,7 +173,7 @@ class Notification extends React.Component<NotificationProps,NotificationState>{
             null
           }
         </div>
-      </div>
+      </StyledNotification>
     )
   }
 }
