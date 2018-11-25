@@ -1248,12 +1248,13 @@
     "@types/react" "*"
     "@types/webpack-env" "*"
 
-"@types/styled-components@^4.0.1":
-  version "4.0.3"
-  resolved "https://registry.yarnpkg.com/@types/styled-components/-/styled-components-4.0.3.tgz#8287e54e446302369eecc521243a2f32cf9122ee"
+"@types/styled-components@^4.1.1":
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/@types/styled-components/-/styled-components-4.1.1.tgz#1a9f8ebff7ee5cbc9ddc08b486e55e5a152bb408"
   dependencies:
     "@types/node" "*"
     "@types/react" "*"
+    csstype "^2.2.0"
 
 "@types/uuid@^3.4.4":
   version "3.4.4"
