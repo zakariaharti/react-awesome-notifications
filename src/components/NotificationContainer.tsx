@@ -10,33 +10,46 @@ import { NotificationContainerProps } from '../types';
  *
  * @author zakaria harti
  */
-const NotificationContainer: React.SFC<NotificationContainerProps> = (props) => {
-  const {
-    notifications,
-    transition
-  } = props;
+class NotificationContainer extends React.Component<NotificationContainerProps>{
 
-  return(
-    <StyledNotificationContainer>
-      <TransitionGroup>
-        {notifications.map(notification => (
-          <CSSTransition
-            key={notification.id}
-            classNames={transition.classNames || 'react-notifiable'}
-            timeout={{
-              enter: transition.enterTimeout,
-              exit: transition.leaveTimeout
-            }}
-          >
-            <Notification
-              notification={notification}
+  static defaultProps: NotificationContainerProps = {
+    notifications: [],
+    position: 'tr',
+    transition: {
+      classNames: 'react-notifiable',
+      enterTimeout: 500,
+      leaveTimeout: 500
+    }
+  }
+
+  render(){
+    const {
+      notifications,
+      transition
+    } = this.props;
+
+    return(
+      <StyledNotificationContainer>
+        <TransitionGroup>
+          {notifications.map(notification => (
+            <CSSTransition
               key={notification.id}
-            />
-          </CSSTransition>
-        ))}
-      </TransitionGroup>
-    </StyledNotificationContainer>
-  )
+              classNames={transition.classNames}
+              timeout={{
+                enter: transition.enterTimeout,
+                exit: transition.leaveTimeout
+              }}
+            >
+              <Notification
+                notification={notification}
+                key={notification.id}
+              />
+            </CSSTransition>
+          ))}
+        </TransitionGroup>
+      </StyledNotificationContainer>
+    )
+  }
 };
 
 export default NotificationContainer;

@@ -6,6 +6,7 @@ import { NotificationContainerProps } from '../types';
 import { Notification } from '../components/Notification';
 import NotificationContainer from '../components/NotificationContainer';
 import { NotificationProps } from '../types';
+import { StyledNotificationContainer } from '../components/StyledComponents/StyledNotificationContainer';
 
 export class ExpectedNotification extends React.Component<NotificationProps>{
 
@@ -100,7 +101,7 @@ export class ExpectedNotificationContainer extends React.Component<NotificationC
     } = this.props;
 
     return(
-      <div>
+      <StyledNotificationContainer>
         <TransitionGroup>
           {notifications.map(notification => (
             <CSSTransition
@@ -118,7 +119,7 @@ export class ExpectedNotificationContainer extends React.Component<NotificationC
             </CSSTransition>
           ))}
         </TransitionGroup>
-      </div>
+      </StyledNotificationContainer>
     )
   }
 }

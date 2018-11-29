@@ -1,6 +1,8 @@
 import thunk from 'redux-thunk';
 import configureMockStore from 'redux-mock-store';
 
+const uuidv1 = require('uuid/v1');
+
 export const mockStore = (reducers: any) => {
   const middleware = [thunk];
   const mockStore = configureMockStore(middleware);
@@ -19,7 +21,7 @@ export function genNotification(notification = {}) {
   const numb = 7;
 
   return Object.assign({}, {
-    id: 8,
+    id: uuidv1(),
     title: 'hello world',
     message: 'hello text',
     position: 'tl',
@@ -29,13 +31,13 @@ export function genNotification(notification = {}) {
     allowHTML: false,
     closeButton: true,
     buttons: [{
-      id: 'mlf',
+      id: uuidv1(),
       label: 'submit',
       action: () => {
         return numb * 2;
       }
     }, {
-      id: 'kjf',
+      id: uuidv1(),
       label: 'submit',
       action: () => {
         return numb * 3;
