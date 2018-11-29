@@ -10,7 +10,7 @@ interface NotificationContainerProps{
   filter: () => void;
 }
 
-class NotificationSystem extends React.Component<NotificationContainerProps> {
+export class NotificationSystem extends React.Component<NotificationContainerProps> {
 
   static defaultProps: Partial<NotificationContainerProps> = {
     notifications: []

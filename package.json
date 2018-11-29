@@ -71,7 +71,7 @@
     "build": "npm run tsc && build-storybook",
     "build-lib-watch": "tsc -w",
     "build-lib": "tsc && npm run copy-css-to-lib && npm run copy-svg-to-lib && npm run copy-png-to-lib && npm run copy-woff2-to-lib",
-    "test": "jest --watch",
+    "test": "jest --watch -o",
     "test:coverage": "npm test -- --coverage",
     "eject": "react-scripts-ts eject",
     "storybook": "start-storybook -p 6006",

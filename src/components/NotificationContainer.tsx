@@ -34,7 +34,7 @@ class NotificationContainer extends React.Component<NotificationContainerProps>{
           {notifications.map(notification => (
             <CSSTransition
               key={notification.id}
-              classNames={transition.classNames}
+              classNames="react-notifiable"
               timeout={{
                 enter: transition.enterTimeout,
                 exit: transition.leaveTimeout

@@ -3,11 +3,8 @@ import { mount, CommonWrapper, shallow } from 'enzyme';
 import { Provider } from 'react-redux';
 
 import { NotificationContainerProps } from '../types';
-//import { actionTypes } from '../store/types';
-//import { Timer } from '../helpers/misc';
 import { ExpectedNotificationContainer } from '../helpers/expectedComponents'
 import NotificationContainer from './NotificationContainer';
-//import { removeNotification } from '../store/actionCreators';
 import { genNotifications, mockStore } from '../helpers/configureTests';
 
 type NoteType = CommonWrapper<NotificationContainerProps,{}>;
@@ -15,6 +12,12 @@ type NoteType = CommonWrapper<NotificationContainerProps,{}>;
 describe('testing <NotificationContainer />',() => {
   let notifications: any = null;
   let store: any = null;
+  let otherProps = {
+    position: 'tr',
+    transition: {
+      classNames: 'foo'
+    }
+  };
 
   beforeEach(() => {
     notifications = genNotifications(3);
@@ -44,13 +47,13 @@ describe('testing <NotificationContainer />',() => {
  it('should render notifications',() => {
     let wrapper: NoteType = mount(
       <Provider store={store}>
-        <NotificationContainer notifications={notifications} position="tr" />
+        <NotificationContainer notifications={notifications} {...otherProps} />
       </Provider>
     );
 
     let expected: NoteType = mount(
       <Provider store={store}>
-        <ExpectedNotificationContainer notifications={notifications} position="tr" />
+        <ExpectedNotificationContainer notifications={notifications} {...otherProps} />
       </Provider>
     );
 
