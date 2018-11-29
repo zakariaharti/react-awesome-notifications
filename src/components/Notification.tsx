@@ -2,16 +2,22 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 
 import { removeNotification } from '../store/actionCreators';
-import { IRemoveNotification } from '../store/types';
 import { StyledNotification } from './StyledComponents/StyledNotification';
+import { Timer } from '../helpers/misc';
+import { NotificationProps } from '../types';
+import { NotificationState } from '../types';
 
-interface NotificationProps{
-  notification: ReactNotifiable.INotification;
-  closeNotification: (not: ReactNotifiable.INotification) => IRemoveNotification;
-}
-
-interface NotificationState{
-  timer: NodeJS.Timer;
+/**
+ * Create a timer
+ * @param {Number} dismissAfter
+ * @param {Function} callback
+ * @returns {Function|null} a Timer
+ */
+function createTimer(dismissAfter: number, callback: any) {
+  if (dismissAfter > 0) {
+    return new Timer(dismissAfter, callback);
+  }
+  return null;
 }
 
 /**
@@ -19,15 +25,23 @@ interface NotificationState{
  *
  * @author Zakaria harti
  */
-class Notification extends React.Component<NotificationProps,NotificationState>{
+export class Notification extends React.Component<NotificationProps,NotificationState>{
+  /**
+   * close the notification
+   *
+   * @private
+   * @returns {void}
+   */
+  private close = () => {
+    const { closeNotification, notification } = this.props;
+    closeNotification(notification);
+  }
 
   /**
    * state of the Notification component
    */
   state: NotificationState = {
-    timer: setTimeout(() => {
-      this.close();
-    },this.props.notification.dismissAfter),
+    timer: createTimer(this.props.notification.dismissAfter, this.close),
   }
 
   /**
@@ -50,7 +64,7 @@ class Notification extends React.Component<NotificationProps,NotificationState>{
   componentWillUnmount(){
     const { notification } = this.props;
     if(typeof notification.onUnmounted === 'function'){
-      notification.onMounted();
+      notification.onUnmounted();
     }
   }
 
@@ -62,23 +76,30 @@ class Notification extends React.Component<NotificationProps,NotificationState>{
   componentDidUpdate(nextProps: NotificationProps){
     if(nextProps.notification != this.props.notification){
       this.setState({
-        timer: setTimeout(() => {
-          this.close();
-        },nextProps.notification.dismissAfter)
+        timer: createTimer(nextProps.notification.dismissAfter, this.close)
       })
     }
   }
 
   /**
-   * close the notification
-   *
-   * @private
+   * Pauses the timer
    * @returns {void}
+   * @private
    */
-  private close = (): void => {
-    const { closeNotification, notification } = this.props;
-    closeNotification(notification);
-  }
+  private pauseTimer = () => {
+    const {timer} = this.state;
+    timer.pause();
+  };
+
+  /**
+   * Resumes the timer
+   * @returns {void}
+   * @private
+   */
+  private resumeTimer = () => {
+    const {timer} = this.state;
+    timer.resume();
+  };
 
   /**
    * Wrap content in an object ready for HTML
@@ -93,27 +114,21 @@ class Notification extends React.Component<NotificationProps,NotificationState>{
   };
 
   /**
-   * get button action callback
-   */
-  private getButtonAction = (callback: any) => {
-    if(callback && typeof callback === 'function'){
-      return callback();
-    }
-    return (): any => null;
-  }
-
-  /**
    * render buttons
    */
   private renderButtons = () => {
     const { buttons } = this.props.notification;
     return buttons.map(button => {
       return(
-        <button key={button.label} onClick={this.getButtonAction(button.action)}>
+        <button
+          key={button.id}
+          onClick={() => button.action()}
+          className="react-notifiable-action-btn"
+        >
           <span>{button.label}</span>
         </button>
       )
-    })
+    });
   }
 
   /**
@@ -128,10 +143,19 @@ class Notification extends React.Component<NotificationProps,NotificationState>{
       message,
       title
     } = this.props.notification;
+
+    const {timer} = this.state;
+
+    if(timer){
+      this.resumeTimer();
+    }
+
     return(
       <StyledNotification
         className="wrapper"
         onClick={dismissible && !closeButton ? this.close : null}
+        onMouseEnter={timer ? this.pauseTimer : null}
+        onMouseLeave={timer ? this.resumeTimer : null}
       >
         <div className="container">
           <div className="not-content">
@@ -157,7 +181,7 @@ class Notification extends React.Component<NotificationProps,NotificationState>{
           {
             dismissible && closeButton
             ? (
-              <div>
+              <div className="react-notifiable-close-btn">
                 <span onClick={this.close}/>
               </div>
             ) :
@@ -178,6 +202,6 @@ class Notification extends React.Component<NotificationProps,NotificationState>{
   }
 }
 
-export default connect(null, {
+export default connect<NotificationProps>(null, {
   closeNotification: removeNotification
 })(Notification);

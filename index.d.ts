@@ -11,8 +11,9 @@ declare namespace ReactNotifiable {
     onUnmounted?: () => void;
     closeButton?: boolean;
     buttons?: {
+      id: any;
       label: string,
-      action: (notification: Notification) => void,
+      action: (notification?: Notification) => void,
     }[];
     allowHTML?: boolean;
   }

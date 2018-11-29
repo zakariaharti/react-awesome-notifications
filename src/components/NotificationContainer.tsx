@@ -3,16 +3,7 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 import Notification from './Notification';
 import { StyledNotificationContainer } from './StyledComponents/StyledNotificationContainer';
-
-interface NotificationContainerProps{
-  notifications: ReactNotifiable.INotification[];
-  transition ?: {
-    classNames ?: string,
-    enterTimeout ?: number,
-    leaveTimeout ?: number
-  };
-  position ?: string;
-}
+import { NotificationContainerProps } from '../types';
 
 /**
  * the NotificationContainer class component
