@@ -25,10 +25,10 @@ export const addNotification = (not: ReactNotifiable.INotification): IAddNotific
  * @param Object not notification
  * @returns {type: string, payload: Object}
  */
-export const removeNotification = (not: ReactNotifiable.INotification): IRemoveNotification => {
+export const removeNotification = (id: any): IRemoveNotification => {
   return{
     type: actionTypes.REMOVE_NOTIFICATION,
-    payload: not
+    payload: id
   }
 }
 

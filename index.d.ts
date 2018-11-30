@@ -1,6 +1,6 @@
 declare namespace ReactNotifiable {
   export interface INotification{
-    id: string;
+    id: string | number;
     title?: string;
     message?: string;
     level: 'primary' | 'success' | 'info' | 'warning' | 'error';

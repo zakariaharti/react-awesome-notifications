@@ -6,13 +6,15 @@ import {
 /**
  * default notification
  */
-const defaultNotification: ReactNotifiable.INotification = {
+export const defaultNotification: ReactNotifiable.INotification = {
   level: ReactNotifiable.notificationLevel.PRIMARY,
   dismissAfter: 5000,
   dismissible: true,
   message: '',
   position: ReactNotifiable.notificationPosition.TOP_RIGHT,
-  id: ''
+  id: '',
+  allowHTML: true,
+  closeButton: true
 }
 
 /**
@@ -25,7 +27,9 @@ const defaultState: ReactNotifiable.INotification[] | [] = []
  * @param {Object} state
  * @param {{type: string, payload: {Object}}} action
  */
-const reducer = (state: ReactNotifiable.INotification[] | [] = defaultState, action: actions) => {
+const reducer = (
+  state: ReactNotifiable.INotification[] | [] = defaultState,
+  action: actions) => {
   switch(action.type){
     case actionTypes.ADD_NOTIFICATION:
       const notification = Object.assign({},defaultNotification,action.payload);
@@ -47,7 +51,7 @@ const reducer = (state: ReactNotifiable.INotification[] | [] = defaultState, act
     case actionTypes.REMOVE_NOTIFICATION:
       // @ts-ignore
       return state.filter(
-        (notification: ReactNotifiable.INotification) => notification.id !== action.payload.id
+        (notification: ReactNotifiable.INotification) => notification.id !== action.payload
       );
     break;
 

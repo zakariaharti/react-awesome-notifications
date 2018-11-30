@@ -16,7 +16,7 @@ export interface IAddNotification{
 
 export interface IRemoveNotification{
   type: actionTypes.REMOVE_NOTIFICATION;
-  payload: ReactNotifiable.INotification;
+  payload: any;
 }
 
 export interface IUpdateNotification{

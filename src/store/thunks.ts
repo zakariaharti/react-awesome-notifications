@@ -1,6 +1,4 @@
 import { Dispatch } from 'redux';
-import uuid from 'uuid/v1';
-
 import {
   addNotification,
   updateNotification
@@ -14,7 +12,7 @@ import { IRootState } from './types';
  */
 export const addNotificationThunk = (notification: ReactNotifiable.INotification) => (dispatch: Dispatch) => {
    if(!notification.id){
-     notification.id = uuid();
+     notification.id = new Date().getTime();
    }
    dispatch(addNotification(notification));
 
@@ -46,7 +44,7 @@ export const notifyThunk = (notification: ReactNotifiable.INotification) =>
    const doesExists = notifications.find(not => not.id == notification.id);
 
    if(doesExists){
-     dispatch(updateNotification(notification));
+     return dispatch(updateNotification(notification));
    }
 
    return dispatch(addNotification(notification));

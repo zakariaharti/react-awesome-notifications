@@ -21,11 +21,11 @@ export function genNotification(notification = {}) {
   const numb = 7;
 
   return Object.assign({}, {
-    id: uuidv1(),
+    id: 'my_id',
     title: 'hello world',
     message: 'hello text',
-    position: 'tl',
-    level: 'primary',
+    position: ReactNotifiable.notificationPosition.TOP_RIGHT,
+    level: ReactNotifiable.notificationLevel.PRIMARY,
     dismissible: true,
     dismissAfter: 4000,
     allowHTML: false,
