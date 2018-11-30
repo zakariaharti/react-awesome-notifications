@@ -5,7 +5,7 @@ import { Timer } from '../helpers/misc';
  */
 export interface NotificationProps{
   notification: ReactNotifiable.INotification;
-  closeNotification?: (not: ReactNotifiable.INotification) => IRemoveNotification;
+  closeNotification?: (id: any) => IRemoveNotification;
 }
 
 /**
@@ -17,10 +17,5 @@ export interface NotificationState{
 
 export interface NotificationContainerProps{
   notifications: ReactNotifiable.INotification[];
-  transition ?: {
-    classNames ?: string,
-    enterTimeout ?: number,
-    leaveTimeout ?: number
-  };
   position ?: string;
 }

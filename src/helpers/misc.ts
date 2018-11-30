@@ -4,7 +4,7 @@ export class Timer{
     private callback: () => void
   ){}
 
-  private timerId: NodeJS.Timer;
+  private timerId: any;
   private start: any;
   private remaining = this.delay;
 
@@ -17,7 +17,7 @@ export class Timer{
   public resume = () => {
     this.start = new Date();
     clearTimeout(this.timerId);
-    this.timerId = setTimeout(this.callback,this.delay);
+    this.timerId = setTimeout(this.callback,this.remaining);
   }
 
   public getRemaining = () => this.remaining;

@@ -34,7 +34,7 @@ export class Notification extends React.Component<NotificationProps,Notification
    */
   private close = () => {
     const { closeNotification, notification } = this.props;
-    closeNotification(notification);
+    closeNotification(notification.id);
   }
 
   /**
@@ -144,7 +144,7 @@ export class Notification extends React.Component<NotificationProps,Notification
       title
     } = this.props.notification;
 
-    const {timer} = this.state;
+    const { timer } = this.state;
 
     if(timer){
       this.resumeTimer();
@@ -187,7 +187,7 @@ export class Notification extends React.Component<NotificationProps,Notification
             ) :
             null
           }
-          {buttons.length
+          {buttons && buttons.length
             ? (
               <div onClick={this.close}>
                 {this.renderButtons()}

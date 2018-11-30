@@ -27,7 +27,7 @@ declare namespace ReactNotifiable {
   }
 
   export const enum notificationPosition{
-    TOP_RIGHT = 't',
+    TOP_RIGHT = 'tr',
     TOP_CENTER = 'tc',
     TOP_LEFT = 'tl',
     BOTTOM_RIGHT = 'br',

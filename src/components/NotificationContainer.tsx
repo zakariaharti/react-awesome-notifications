@@ -14,19 +14,11 @@ class NotificationContainer extends React.Component<NotificationContainerProps>{
 
   static defaultProps: NotificationContainerProps = {
     notifications: [],
-    position: 'tr',
-    transition: {
-      classNames: 'react-notifiable',
-      enterTimeout: 500,
-      leaveTimeout: 500
-    }
+    position: 'tr'
   }
 
   render(){
-    const {
-      notifications,
-      transition
-    } = this.props;
+    const { notifications } = this.props;
 
     return(
       <StyledNotificationContainer>
@@ -35,10 +27,7 @@ class NotificationContainer extends React.Component<NotificationContainerProps>{
             <CSSTransition
               key={notification.id}
               classNames="react-notifiable"
-              timeout={{
-                enter: transition.enterTimeout,
-                exit: transition.leaveTimeout
-              }}
+              timeout={500}
             >
               <Notification
                 notification={notification}

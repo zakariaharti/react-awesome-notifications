@@ -96,8 +96,7 @@ export class ExpectedNotificationContainer extends React.Component<NotificationC
 
   render(){
     const {
-      notifications,
-      transition
+      notifications
     } = this.props;
 
     return(
@@ -106,10 +105,10 @@ export class ExpectedNotificationContainer extends React.Component<NotificationC
           {notifications.map(notification => (
             <CSSTransition
               key={notification.id}
-              classNames={transition.classNames || 'react-notifiable'}
+              classNames={'react-notifiable'}
               timeout={{
-                enter: transition.enterTimeout,
-                exit: transition.leaveTimeout
+                enter: 500,
+                exit: 500
               }}
             >
               <Notification

@@ -39,8 +39,8 @@ export class NotificationSystem extends React.Component<NotificationContainerPro
     }
 
     containers.push(positions.map(position => {
-      const notifs = notifications.filter(not => {
-        return not.position == position;
+      const notifs = this.props.notifications.filter(notif => {
+        return notif.position === position;
       });
 
       return(
