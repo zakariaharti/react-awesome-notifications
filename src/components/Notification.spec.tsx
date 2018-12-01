@@ -254,8 +254,11 @@ describe('test <Notification /> component',() => {
     expect(store.getActions()).toEqual([expectedAction]);
   });
 
-  it('should dispatch an action to remove the notification (when dismissible is false)',() => {
+  it('should call button action when clicked',() => {
+    let num = 0;
+
     notification.dismissible = false;
+    notification.buttons[0].action = () => num++;
 
     const wrapper = mount(
       <Provider store={store}>
@@ -266,13 +269,8 @@ describe('test <Notification /> component',() => {
       </Provider>
     );
 
-    const expectedAction = {
-      type: actionTypes.REMOVE_NOTIFICATION,
-      payload: notification.id
-    };
-
-    wrapper.find('notification-button').first().simulate('click');
-    expect(store.getActions()).toEqual([expectedAction]);
+    wrapper.find('.notification-button').first().simulate('click');
+    expect(num).toEqual(1);
   });
 
   it('should remove the notification after dismissAfter',(done) => {
