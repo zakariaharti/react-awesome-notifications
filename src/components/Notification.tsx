@@ -138,7 +138,7 @@ export class Notification extends React.Component<NotificationProps,Notification
    */
   private renderButtons = () => {
     const { buttons } = this.props.notification;
-    return buttons.map(button => {
+    return buttons.map((button,index) => {
       return(
         <ExtendedStyledButton
           key={uuid()}
@@ -149,6 +149,7 @@ export class Notification extends React.Component<NotificationProps,Notification
             return null;
           }}
           level={this.props.notification.level}
+          className={'notification-button notification-button-'+index+1}
           extendedStyles={this.getStyles('notificationButton')}
         >
           <span className="btn-text">{button.label}</span>
@@ -235,7 +236,7 @@ export class Notification extends React.Component<NotificationProps,Notification
           {
             dismissible && closeButton
             ? (
-              <div className={`notification-close-btn`}>
+              <div className='notification-close-btn'>
                 <span className="close-btn" onClick={this.close}>&times;</span>
               </div>
             ) :

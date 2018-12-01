@@ -224,7 +224,7 @@ describe('test <Notification /> component',() => {
 
     const expectedAction = {
       type: actionTypes.REMOVE_NOTIFICATION,
-      payload: notification
+      payload: notification.id
     };
 
     wrapper.find(ConnectedNotification).simulate('click');
@@ -250,7 +250,7 @@ describe('test <Notification /> component',() => {
       payload: notification.id
     };
 
-    wrapper.find('.react-notifiable-close-btn span').simulate('click');
+    wrapper.find('.notification-close-btn span.close-btn').simulate('click');
     expect(store.getActions()).toEqual([expectedAction]);
   });
 
@@ -271,7 +271,7 @@ describe('test <Notification /> component',() => {
       payload: notification.id
     };
 
-    wrapper.find('button.react-notifiable-action-btn').first().simulate('click');
+    wrapper.find('notification-button').first().simulate('click');
     expect(store.getActions()).toEqual([expectedAction]);
   });
 
