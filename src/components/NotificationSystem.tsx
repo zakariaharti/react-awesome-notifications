@@ -3,7 +3,10 @@ import {connect} from 'react-redux';
 
 import NotificationContainer from './NotificationContainer';
 import {IRootState} from '../store/types';
-import { StyledNotificationSystem } from './StyledComponents/StyledNotificationSystem';
+import {
+  StyledNotificationSystem,
+  GlobalStyles
+} from './StyledComponents';
 
 interface NotificationContainerProps{
   notifications: ReactNotifiable.INotification[];
@@ -57,6 +60,7 @@ export class NotificationSystem extends React.Component<NotificationContainerPro
   render(){
     return(
       <StyledNotificationSystem>
+        <GlobalStyles />
         {this.renderNotificationContainers()}
       </StyledNotificationSystem>
     )

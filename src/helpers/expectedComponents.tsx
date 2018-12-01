@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
-import { StyledNotification } from '../components/StyledComponents/StyledNotification';
+import { StyledNotification } from '../components/StyledComponents';
 import { NotificationContainerProps } from '../types';
 import { Notification } from '../components/Notification';
 import NotificationContainer from '../components/NotificationContainer';
 import { NotificationProps } from '../types';
-import { StyledNotificationContainer } from '../components/StyledComponents/StyledNotificationContainer';
+import { StyledNotificationContainer } from '../components/StyledComponents';
 
 export class ExpectedNotification extends React.Component<NotificationProps>{
 

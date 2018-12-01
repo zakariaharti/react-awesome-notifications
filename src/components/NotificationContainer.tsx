@@ -2,7 +2,7 @@ import * as React from 'react';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 import Notification from './Notification';
-import { StyledNotificationContainer } from './StyledComponents/StyledNotificationContainer';
+import { StyledNotificationContainer } from './StyledComponents';
 import { NotificationContainerProps } from '../types';
 
 /**

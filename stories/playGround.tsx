@@ -13,14 +13,19 @@ class PlayGround extends React.Component<IPlayGround>{
   addNotification = () => {
     this.props.addNotification({
       level: ReactNotifiable.notificationLevel.PRIMARY,
-      dismissAfter: 5000,
+      dismissAfter: 0,
       dismissible: true,
-      message: 'what else',
-      body: 'hello this is a body',
+      title: 'a new react.js version has been released',
+      message: 'a new react.js version has been released',
       position: 'tr',
       id: 'mlk',
       allowHTML: true,
-      closeButton: true
+      closeButton: true,
+      buttons: [
+        {
+          label: 'submit'
+        }
+      ]
     });
   }
 

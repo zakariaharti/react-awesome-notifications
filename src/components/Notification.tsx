@@ -1,11 +1,17 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 
+const uuid = require('uuid/v1');
+
 import { removeNotification } from '../store/actionCreators';
-import { StyledNotification } from './StyledComponents/StyledNotification';
 import { Timer } from '../helpers/misc';
 import { NotificationProps } from '../types';
 import { NotificationState } from '../types';
+import {
+  StyledNotification,
+  StyledButton,
+  StyledButtonsContainer
+} from './StyledComponents';
 
 /**
  * Create a timer
@@ -120,13 +126,18 @@ export class Notification extends React.Component<NotificationProps,Notification
     const { buttons } = this.props.notification;
     return buttons.map(button => {
       return(
-        <button
-          key={button.id}
-          onClick={() => button.action()}
+        <StyledButton
+          key={uuid()}
+          onClick={() => {
+            if(button.action && typeof button.action === 'function'){
+              return button.action();
+            }
+            return null;
+          }}
           className="react-notifiable-action-btn"
         >
-          <span>{button.label}</span>
-        </button>
+          <span className="btn-text">{button.label}</span>
+        </StyledButton>
       )
     });
   }
@@ -141,7 +152,8 @@ export class Notification extends React.Component<NotificationProps,Notification
       closeButton,
       dismissible,
       message,
-      title
+      title,
+      level
     } = this.props.notification;
 
     const { timer } = this.state;
@@ -156,15 +168,17 @@ export class Notification extends React.Component<NotificationProps,Notification
         onClick={dismissible && !closeButton ? this.close : null}
         onMouseEnter={timer ? this.pauseTimer : null}
         onMouseLeave={timer ? this.resumeTimer : null}
+        dismissible={dismissible}
+        level={level}
       >
         <div className="container">
-          <div className="not-content">
+          <div className="notification-content">
             {
               title
                 ?
                 allowHTML
-                  ? <h4 dangerouslySetInnerHTML={this.setHTML(title)}></h4>
-                  : <h4>{title}</h4>
+                  ? <h4 className="title" dangerouslySetInnerHTML={this.setHTML(title)}></h4>
+                  : <h4 className="title">{title}</h4>
                 :
                 null
             }
@@ -172,8 +186,8 @@ export class Notification extends React.Component<NotificationProps,Notification
               message
                 ?
                 allowHTML
-                  ? <h4 dangerouslySetInnerHTML={this.setHTML(message)}></h4>
-                  : <h4>{message}</h4>
+                  ? <p className="message" dangerouslySetInnerHTML={this.setHTML(message)}></p>
+                  : <p className="message">{message}</p>
                 :
                 null
             }
@@ -181,17 +195,17 @@ export class Notification extends React.Component<NotificationProps,Notification
           {
             dismissible && closeButton
             ? (
-              <div className="react-notifiable-close-btn">
-                <span onClick={this.close}/>
+              <div className="notification-close-btn">
+                <span className="close-btn" onClick={this.close}/>
               </div>
             ) :
             null
           }
           {buttons && buttons.length
             ? (
-              <div onClick={this.close}>
+              <StyledButtonsContainer>
                 {this.renderButtons()}
-              </div>
+              </StyledButtonsContainer>
             )
             :
             null
