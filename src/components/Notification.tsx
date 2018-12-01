@@ -149,7 +149,7 @@ export class Notification extends React.Component<NotificationProps,Notification
             return null;
           }}
           level={this.props.notification.level}
-          className={'notification-button notification-button-'+index+1}
+          className={'notification-button'}
           extendedStyles={this.getStyles('notificationButton')}
         >
           <span className="btn-text">{button.label}</span>
