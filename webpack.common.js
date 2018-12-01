@@ -9,7 +9,8 @@ module.exports = {
   output: {
     filename: 'index.js',
     path: path.resolve(__dirname,'build'),
-    library: 'react-notifiable',
+    library: 'react-awesome-notifications',
+    libraryTarget: 'umd'
   },
   resolve: {
     extensions: ['.ts','.tsx','.js','.jsx']
