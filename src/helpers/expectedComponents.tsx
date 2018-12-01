@@ -1,7 +1,15 @@
 import * as React from 'react';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
-import { StyledNotification } from '../components/StyledComponents';
+const uuid = require('uuid/v1');
+
+import {
+  ExtendedStyledButton,
+  ExtendedStyledButtonsContainer,
+  ExtendedStyledMessage,
+  ExtendedStyledNotification,
+  ExtendedStyledTitle
+} from '../components/StyledComponents';
 import { NotificationContainerProps } from '../types';
 import { Notification } from '../components/Notification';
 import NotificationContainer from '../components/NotificationContainer';
@@ -20,15 +28,20 @@ export class ExpectedNotification extends React.Component<NotificationProps>{
     const { buttons } = this.props.notification;
     return buttons.map(button => {
       return(
-        <button
-          key={button.label}
-          onClick={() => button.action()}
-          className="react-notifiable-action-btn"
+        <ExtendedStyledButton
+          key={uuid()}
+          onClick={() => {
+            if(button.action && typeof button.action === 'function'){
+              return button.action();
+            }
+            return null;
+          }}
+          level={this.props.notification.level}
         >
-          <span>{button.label}</span>
-        </button>
+          <span className="btn-text">{button.label}</span>
+        </ExtendedStyledButton>
       )
-    })
+    });
   }
 
   render(){
@@ -39,22 +52,34 @@ export class ExpectedNotification extends React.Component<NotificationProps>{
       closeButton,
       dismissible,
       message,
-      title
+      title,
+      level
     } = this.props.notification;
 
     return(
-      <StyledNotification
-        className="wrapper"
-        onClick={dismissible && !closeButton ? () => '' : null}
+      <ExtendedStyledNotification
+        className={`notification-wrapper`}
+        dismissible={dismissible}
+        level={level}
       >
-        <div className="container">
-          <div className="not-content">
+        <div className='container'>
+          <div className="notification-content">
             {
               title
                 ?
                 allowHTML
-                  ? <h4 dangerouslySetInnerHTML={this.setHTML(title)}></h4>
-                  : <h4>{title}</h4>
+                  ?
+                  <ExtendedStyledTitle
+                    level={level}
+                    dangerouslySetInnerHTML={this.setHTML(title)}
+                  >
+                  </ExtendedStyledTitle>
+                  :
+                  <ExtendedStyledTitle
+                    level={level}
+                  >
+                    {title}
+                  </ExtendedStyledTitle>
                 :
                 null
             }
@@ -62,8 +87,18 @@ export class ExpectedNotification extends React.Component<NotificationProps>{
               message
                 ?
                 allowHTML
-                  ? <h4 dangerouslySetInnerHTML={this.setHTML(message)}></h4>
-                  : <h4>{message}</h4>
+                  ?
+                  <ExtendedStyledMessage
+                    level={level}
+                    dangerouslySetInnerHTML={this.setHTML(message)}
+                  >
+                  </ExtendedStyledMessage>
+                  :
+                  <ExtendedStyledMessage
+                    level={level}
+                  >
+                      {message}
+                  </ExtendedStyledMessage>
                 :
                 null
             }
@@ -71,23 +106,23 @@ export class ExpectedNotification extends React.Component<NotificationProps>{
           {
             dismissible && closeButton
             ? (
-              <div className="react-notifiable-close-btn">
-                <span onClick={() => ''}/>
+              <div className={`notification-close-btn`}>
+                <span className="close-btn" onClick={null}>&times;</span>
               </div>
             ) :
             null
           }
-          {buttons.length
+          {buttons && buttons.length
             ? (
-              <div onClick={() => ''}>
+              <ExtendedStyledButtonsContainer>
                 {this.renderButtons()}
-              </div>
+              </ExtendedStyledButtonsContainer>
             )
             :
             null
           }
         </div>
-      </StyledNotification>
+      </ExtendedStyledNotification>
     )
   }
 }
