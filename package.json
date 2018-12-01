@@ -66,20 +66,12 @@
   },
   "scripts": {
     "webpack": "webpack --config webpack.common.js",
-    "start": "react-scripts-ts start",
     "tslint": "tslint",
-    "build": "npm run tsc && build-storybook",
-    "build-lib-watch": "tsc -w",
-    "build-lib": "tsc && npm run copy-css-to-lib && npm run copy-svg-to-lib && npm run copy-png-to-lib && npm run copy-woff2-to-lib",
+    "build": "webpack --config webpack.prod.js",
     "test": "jest --watch -o",
     "test:coverage": "npm test -- --coverage",
-    "eject": "react-scripts-ts eject",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "copy-css-to-lib": "cpx \"./src/**/*.css\" ./build/lib",
-    "copy-woff2-to-lib": "cpx \"./src/**/*.woff2\" ./build/lib",
-    "copy-svg-to-lib": "cpx \"./src/**/*.svg\" ./build/lib",
-    "copy-png-to-lib": "cpx \"./src/**/*.png\" ./build/lib",
     "lint": "tslint -c tslint.json 'src/**/*.{ts,tsx}'"
   }
 }
