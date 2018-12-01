@@ -1,4 +1,4 @@
-import {css, } from 'styled-components';
+import {css} from 'styled-components';
 
 interface IStyledNotificationVariant{
   level: string;
@@ -7,8 +7,20 @@ interface IStyledNotificationVariant{
 export const MixinNotificationVariant = css<IStyledNotificationVariant>`
   background: ${(props) => {
     if(props.level == 'primary'){
-      return 'blue';
+      return 'var(--primary-bg)';
     }
-    return 'blue';
+    if(props.level == 'success'){
+      return 'var(--success-bg)';
+    }
+    if(props.level == 'info'){
+      return 'var(--info-bg)';
+    }
+    if(props.level == 'warning'){
+      return 'var(--warning-bg)';
+    }
+    if(props.level == 'error'){
+      return 'var(--error-bg)';
+    }
+    return 'var(--primary-bg)';
   }};
 `;

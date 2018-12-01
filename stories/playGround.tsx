@@ -17,7 +17,7 @@ class PlayGround extends React.Component<IPlayGround>{
       dismissible: true,
       title: 'a new react.js version has been released',
       message: 'a new react.js version has been released',
-      position: 'tr',
+      position: 'bc',
       id: 'mlk',
       allowHTML: true,
       closeButton: true,
@@ -25,7 +25,12 @@ class PlayGround extends React.Component<IPlayGround>{
         {
           label: 'submit'
         }
-      ]
+      ],
+      extendStyles: {
+        notificationWrapper: `
+          background: pink
+        `
+      }
     });
   }
 

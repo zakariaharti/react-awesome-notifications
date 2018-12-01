@@ -8,9 +8,11 @@ import { Timer } from '../helpers/misc';
 import { NotificationProps } from '../types';
 import { NotificationState } from '../types';
 import {
-  StyledNotification,
-  StyledButton,
-  StyledButtonsContainer
+  ExtendedStyledButton,
+  ExtendedStyledButtonsContainer,
+  ExtendedStyledMessage,
+  ExtendedStyledNotification,
+  ExtendedStyledTitle
 } from './StyledComponents';
 
 /**
@@ -120,13 +122,25 @@ export class Notification extends React.Component<NotificationProps,Notification
   };
 
   /**
+   * get extended styles
+   */
+  private getStyles = (prop: string) => {
+    if(typeof this.props.notification.extendStyles !== 'undefined'){
+      if(typeof this.props.notification.extendStyles[prop] !== 'undefined'){
+        return this.props.notification.extendStyles[prop];
+      }
+    }
+    return ``;
+  }
+
+  /**
    * render buttons
    */
   private renderButtons = () => {
     const { buttons } = this.props.notification;
     return buttons.map(button => {
       return(
-        <StyledButton
+        <ExtendedStyledButton
           key={uuid()}
           onClick={() => {
             if(button.action && typeof button.action === 'function'){
@@ -134,10 +148,11 @@ export class Notification extends React.Component<NotificationProps,Notification
             }
             return null;
           }}
-          className="react-notifiable-action-btn"
+          level={this.props.notification.level}
+          extendedStyles={this.getStyles('notificationButton')}
         >
           <span className="btn-text">{button.label}</span>
-        </StyledButton>
+        </ExtendedStyledButton>
       )
     });
   }
@@ -163,22 +178,35 @@ export class Notification extends React.Component<NotificationProps,Notification
     }
 
     return(
-      <StyledNotification
-        className="wrapper"
+      <ExtendedStyledNotification
+        className={`notification-wrapper`}
         onClick={dismissible && !closeButton ? this.close : null}
         onMouseEnter={timer ? this.pauseTimer : null}
         onMouseLeave={timer ? this.resumeTimer : null}
         dismissible={dismissible}
         level={level}
+        extendedStyles={this.getStyles('notificationWrapper')}
       >
-        <div className="container">
+        <div className='container'>
           <div className="notification-content">
             {
               title
                 ?
                 allowHTML
-                  ? <h4 className="title" dangerouslySetInnerHTML={this.setHTML(title)}></h4>
-                  : <h4 className="title">{title}</h4>
+                  ?
+                  <ExtendedStyledTitle
+                    level={level}
+                    dangerouslySetInnerHTML={this.setHTML(title)}
+                    extendedStyles={this.getStyles('notificationTitle')}
+                  >
+                  </ExtendedStyledTitle>
+                  :
+                  <ExtendedStyledTitle
+                    level={level}
+                    extendedStyles={this.getStyles('notificationTitle')}
+                  >
+                    {title}
+                  </ExtendedStyledTitle>
                 :
                 null
             }
@@ -186,8 +214,20 @@ export class Notification extends React.Component<NotificationProps,Notification
               message
                 ?
                 allowHTML
-                  ? <p className="message" dangerouslySetInnerHTML={this.setHTML(message)}></p>
-                  : <p className="message">{message}</p>
+                  ?
+                  <ExtendedStyledMessage
+                    level={level}
+                    dangerouslySetInnerHTML={this.setHTML(message)}
+                    extendedStyles={this.getStyles('notificationMessage')}
+                  >
+                  </ExtendedStyledMessage>
+                  :
+                  <ExtendedStyledMessage
+                    level={level}
+                    extendedStyles={this.getStyles('notificationMessage')}
+                  >
+                      {message}
+                  </ExtendedStyledMessage>
                 :
                 null
             }
@@ -195,23 +235,23 @@ export class Notification extends React.Component<NotificationProps,Notification
           {
             dismissible && closeButton
             ? (
-              <div className="notification-close-btn">
-                <span className="close-btn" onClick={this.close}/>
+              <div className={`notification-close-btn`}>
+                <span className="close-btn" onClick={this.close}>&times;</span>
               </div>
             ) :
             null
           }
           {buttons && buttons.length
             ? (
-              <StyledButtonsContainer>
+              <ExtendedStyledButtonsContainer extendedStyles={this.getStyles('notificationButtonsContainer')}>
                 {this.renderButtons()}
-              </StyledButtonsContainer>
+              </ExtendedStyledButtonsContainer>
             )
             :
             null
           }
         </div>
-      </StyledNotification>
+      </ExtendedStyledNotification>
     )
   }
 }

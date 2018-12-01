@@ -13,9 +13,17 @@ declare namespace ReactNotifiable {
     buttons?: {
       id: any;
       label: string,
-      action: (notification?: Notification) => void,
+      action: () => void,
+      customClass?: string;
     }[];
     allowHTML?: boolean;
+    extendStyles?: {
+      notificationWrapper: string;
+      notificationTitle: string;
+      notificationMessage: string;
+      notificationButtonsContainer: string;
+      notificationButton: string;
+    };
   }
 
   export const enum notificationLevel{

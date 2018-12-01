@@ -18,4 +18,5 @@ export interface NotificationState{
 export interface NotificationContainerProps{
   notifications: ReactNotifiable.INotification[];
   position ?: string;
+  animationClassNames?: string;
 }
