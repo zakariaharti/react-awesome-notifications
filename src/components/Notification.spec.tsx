@@ -17,7 +17,7 @@ describe('test <Notification /> component',() => {
 
   beforeEach(() => {
     notification = genNotification();
-    store = mockStore({ notifictions: [] });
+    store = mockStore({ notifications: [] });
   });
 
   it('should mount with initiale state',() => {
@@ -208,7 +208,7 @@ describe('test <Notification /> component',() => {
     );
   });
 
-  it('should dispatch an action to remove the notifiction',() => {
+  it('should dispatch an action to remove the notification',() => {
     notification.buttons = [];
     notification.closeButton = false;
     notification.dismissible = true;
@@ -231,7 +231,7 @@ describe('test <Notification /> component',() => {
     expect(store.getActions()).toEqual([expectedAction]);
   });
 
-  it('should dispatch an action to remove the notifiction (when close button is clicked)',() => {
+  it('should dispatch an action to remove the notification (when close button is clicked)',() => {
     notification.buttons = [];
     notification.closeButton = true;
     notification.dismissible = true;
@@ -247,14 +247,14 @@ describe('test <Notification /> component',() => {
 
     const expectedAction = {
       type: actionTypes.REMOVE_NOTIFICATION,
-      payload: notification
+      payload: notification.id
     };
 
     wrapper.find('.react-notifiable-close-btn span').simulate('click');
     expect(store.getActions()).toEqual([expectedAction]);
   });
 
-  it('should dispatch an action to remove the notifiction (when dismissible is false)',() => {
+  it('should dispatch an action to remove the notification (when dismissible is false)',() => {
     notification.dismissible = false;
 
     const wrapper = mount(
@@ -268,7 +268,7 @@ describe('test <Notification /> component',() => {
 
     const expectedAction = {
       type: actionTypes.REMOVE_NOTIFICATION,
-      payload: notification
+      payload: notification.id
     };
 
     wrapper.find('button.react-notifiable-action-btn').first().simulate('click');
@@ -278,7 +278,7 @@ describe('test <Notification /> component',() => {
   it('should remove the notification after dismissAfter',(done) => {
     const expectedAction = {
       type: actionTypes.REMOVE_NOTIFICATION,
-      payload: notification
+      payload: notification.id
     };
 
     notification.dismissAfter = 10;
@@ -306,7 +306,7 @@ describe('test <Notification /> component',() => {
 
     const expectedAction = {
       type: actionTypes.REMOVE_NOTIFICATION,
-      payload: notification
+      payload: notification.id
     };
 
     const wrapper = mount(
@@ -335,7 +335,7 @@ describe('test <Notification /> component',() => {
     }, 410);
   });
 
-  it('should not remove the notifiction when dismissible is false',() => {
+  it('should not remove the notification when dismissible is false',() => {
     notification.dismissible = false;
 
     const wrapper = mount(
@@ -351,7 +351,7 @@ describe('test <Notification /> component',() => {
     expect(store.getActions()).toEqual([]);
   });
 
-  it('should not remove the notifiction when closeButton is true',() => {
+  it('should not remove the notification when closeButton is true',() => {
     notification.dismissible = true;
     notification.buttons = [];
     notification.closeButton = true;
@@ -369,7 +369,7 @@ describe('test <Notification /> component',() => {
     expect(store.getActions()).toEqual([]);
   });
 
-  it('should not remove the notifiction when dismissAfter is 0',(done) => {
+  it('should not remove the notification when dismissAfter is 0',(done) => {
     notification.dismissAfter = 0;
 
     mount(
