@@ -286,7 +286,8 @@ export const StyledButtonsContainer = StyledTs<{position?: string}>(styled.div)`
    display: flex;
    box-sizing: border-box;
    vertical-align: top;
-   justify-content: space-between;
+   justify-content: flex-start;
+   flex-wrap: wrap;
    padding: 0 20px;
 `;
 
@@ -298,6 +299,7 @@ export const StyledButton = StyledTs<{position?: string,level?: string}>(styled.
    min-height: 30px;
    box-sizing: border-box;
    padding: 0;
+   margin-right: 5px;
    background: ${(props: any) => {
      if(props.level == 'primary') return '#a2a2a2';
      if(props.level == 'success') return '#6c9838';

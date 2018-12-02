@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
-//import { action } from '@storybook/addon-actions';
+import { action } from '@storybook/addon-actions';
 import { withInfo } from '@storybook/addon-info';
 //import styled from 'styled-components';
 import { Provider } from 'react-redux';
@@ -286,7 +286,7 @@ stories.add('dismiss after duration',() => {
               position: 'bc',
               id: 'mlkhj',
               allowHTML: true,
-              closeButton: true,
+              closeButton: false,
               buttons: [
                 {
                   label: 'submit'
@@ -306,6 +306,179 @@ stories.add('dismiss after duration',() => {
               buttons: [
                 {
                   label: 'submit'
+                }
+              ]
+            }
+          ]
+        }
+      />
+    </Provider>
+  )
+},{
+  info: {
+    inline: true,
+    source: false,
+    propTables: false,
+  }
+});
+
+// @ts-ignore
+stories.add('with variations',() => {
+  return(
+    <Provider store={store}>
+      <PlayGround
+        nots={
+          [
+            {
+              level: ReactNotifiable.notificationLevel.ERROR,
+              dismissAfter: 5000,
+              dismissible: true,
+              title: 'I will dismiss in 5s',
+              message: 'here is the body',
+              position: 'tl',
+              id: 'mlk',
+              allowHTML: true,
+              closeButton: true,
+              buttons: [
+                {
+                  label: 'submit'
+                }
+              ]
+            },
+            {
+              level: ReactNotifiable.notificationLevel.SUCCESS,
+              dismissAfter: 2000,
+              dismissible: true,
+              title: 'I will dismiss in 2s',
+              message: 'here is the body',
+              position: 'tr',
+              id: 'mlkdd',
+              allowHTML: true,
+              closeButton: true,
+              buttons: [
+                {
+                  label: 'submit'
+                }
+              ]
+            },
+            {
+              level: ReactNotifiable.notificationLevel.WARNING,
+              dismissAfter: 0,
+              dismissible: true,
+              title: 'I will stay forever until you click me',
+              message: 'here is the body',
+              position: 'bc',
+              id: 'mlkhj',
+              allowHTML: true,
+              closeButton: false,
+              buttons: [
+                {
+                  label: 'submit'
+                }
+              ]
+            },
+            {
+              level: ReactNotifiable.notificationLevel.PRIMARY,
+              dismissAfter: 10000,
+              dismissible: true,
+              title: 'I will dimiss in 10s',
+              message: 'here is the body',
+              position: 'bl',
+              id: 'mlkhfj',
+              allowHTML: true,
+              closeButton: true,
+              buttons: [
+                {
+                  label: 'submit'
+                }
+              ]
+            },
+            {
+              level: ReactNotifiable.notificationLevel.PRIMARY,
+              dismissAfter: 10000,
+              dismissible: true,
+              title: 'I will dimiss in 10s',
+              message: 'here is the body',
+              position: 'tc',
+              id: 'mlkhfjgfgh',
+              allowHTML: true,
+              closeButton: true,
+              buttons: [
+                {
+                  label: 'submit'
+                }
+              ]
+            },
+            {
+              level: ReactNotifiable.notificationLevel.ERROR,
+              dismissAfter: 1000,
+              dismissible: true,
+              title: 'I will dimiss in 1s',
+              message: 'here is the body',
+              position: 'bl',
+              id: 'mlkghhfj',
+              allowHTML: true,
+              closeButton: true,
+              buttons: [
+                {
+                  label: 'submit'
+                }
+              ]
+            },
+            {
+              level: ReactNotifiable.notificationLevel.WARNING,
+              dismissAfter: 3000,
+              dismissible: true,
+              title: 'I will dimiss in 3s',
+              message: 'here is the body',
+              position: 'bl',
+              id: 'mlkhfj',
+              allowHTML: true,
+              closeButton: true,
+              buttons: [
+                {
+                  label: 'submit'
+                }
+              ]
+            }
+          ]
+        }
+      />
+    </Provider>
+  )
+},{
+  info: {
+    inline: true,
+    source: false,
+    propTables: false,
+  }
+});
+
+// @ts-ignore
+stories.add('with action buttons',() => {
+  return(
+    <Provider store={store}>
+      <PlayGround
+        nots={
+          [
+            {
+              level: ReactNotifiable.notificationLevel.INFO,
+              dismissAfter: 0,
+              dismissible: true,
+              title: 'I will dismiss in 10s',
+              message: 'here is the body',
+              position: 'tl',
+              id: 'mlk',
+              allowHTML: true,
+              closeButton: true,
+              buttons: [
+                {
+                  label: 'print',
+                  action: () => action('you clicked me')
+                },
+                {
+                  label: 'print two',
+                  action: () => action('you clicked me again')
                 }
               ]
             }
