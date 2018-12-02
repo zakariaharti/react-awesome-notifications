@@ -499,4 +499,4 @@ Before a pull request :
 
 ## License
 
-React-awesome-notifications is under [MIT License](https://github.com/zakariaharti/react-awesome-notifications/blob/master/LICENSE)
+React-awesome-notifications is under [MIT License](https://github.com/zakariaharti/react-awesome-notifications/blob/master/LICENSE.md)
