@@ -153,7 +153,7 @@ const sendResetPasswordLink = (props) => (dispatch) => {
 * [Objects](https://github.com/zakariaharti/react-awesome-notifications#objects)
     * [Notification](https://github.com/zakariaharti/react-awesome-notifications#notification)
     * [Notification button](https://github.com/zakariaharti/react-awesome-notifications#notification-button)
-    * [ExtendStyles](https://github.com/zakariaharti/react-awesome-notifications#extend-styles)
+    * [ExtendStyles](https://github.com/zakariaharti/react-awesome-notifications#extendstyles)
 * [Action creators](https://github.com/zakariaharti/react-awesome-notifications#action-creators)
     * [Update or create a notification](https://github.com/zakariaharti/react-awesome-notificationsREADME.md#update-or-create-a-notification)
     * [Create a notification](https://github.com/zakariaharti/react-awesome-notifications#create-a-notification)
