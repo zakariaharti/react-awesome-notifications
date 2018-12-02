@@ -169,3 +169,155 @@ stories.add('welcome',() => {
 
 // @ts-ignore
 const stories2 = storiesOf('React awesome notifications/Examples', module).addDecorator(withInfo);
+
+// @ts-ignore
+stories.add('basic usage (dismissible)',() => {
+  return(
+    <Provider store={store}>
+      <PlayGround
+        nots={
+          [
+            {
+              level: ReactNotifiable.notificationLevel.INFO,
+              dismissAfter: 0,
+              dismissible: true,
+              title: 'a new react.js version has been released',
+              message: 'a new react.js version has been released',
+              position: 'tl',
+              id: 'mlk',
+              allowHTML: true,
+              closeButton: false,
+              buttons: [
+                {
+                  label: 'submit'
+                }
+              ]
+            },
+            {
+              level: ReactNotifiable.notificationLevel.SUCCESS,
+              dismissAfter: 0,
+              dismissible: true,
+              title: 'a new react.js version has been released',
+              message: 'a new react.js version has been released',
+              position: 'tr',
+              id: 'mlkdd',
+              allowHTML: true,
+              closeButton: false,
+              buttons: [
+                {
+                  label: 'submit'
+                }
+              ]
+            },
+            {
+              level: ReactNotifiable.notificationLevel.WARNING,
+              dismissAfter: 0,
+              dismissible: true,
+              title: 'a new react.js version has been released',
+              message: 'a new react.js version has been released',
+              position: 'bc',
+              id: 'mlkhj',
+              allowHTML: true,
+              closeButton: false,
+              buttons: [
+                {
+                  label: 'submit'
+                }
+              ]
+            }
+          ]
+        }
+      />
+    </Provider>
+  )
+},{
+  info: {
+    inline: true,
+    source: false,
+    propTables: false,
+  }
+});
+
+// @ts-ignore
+stories.add('dismiss after duration',() => {
+  return(
+    <Provider store={store}>
+      <PlayGround
+        nots={
+          [
+            {
+              level: ReactNotifiable.notificationLevel.ERROR,
+              dismissAfter: 5000,
+              dismissible: true,
+              title: 'I will dismiss in 5s',
+              message: 'here is the body',
+              position: 'tl',
+              id: 'mlk',
+              allowHTML: true,
+              closeButton: true,
+              buttons: [
+                {
+                  label: 'submit'
+                }
+              ]
+            },
+            {
+              level: ReactNotifiable.notificationLevel.SUCCESS,
+              dismissAfter: 2000,
+              dismissible: true,
+              title: 'I will dismiss in 2s',
+              message: 'here is the body',
+              position: 'tr',
+              id: 'mlkdd',
+              allowHTML: true,
+              closeButton: true,
+              buttons: [
+                {
+                  label: 'submit'
+                }
+              ]
+            },
+            {
+              level: ReactNotifiable.notificationLevel.WARNING,
+              dismissAfter: 0,
+              dismissible: true,
+              title: 'I will stay forever until you click me',
+              message: 'here is the body',
+              position: 'bc',
+              id: 'mlkhj',
+              allowHTML: true,
+              closeButton: true,
+              buttons: [
+                {
+                  label: 'submit'
+                }
+              ]
+            },
+            {
+              level: ReactNotifiable.notificationLevel.PRIMARY,
+              dismissAfter: 10000,
+              dismissible: true,
+              title: 'I will dimiss in 10s',
+              message: 'here is the body',
+              position: 'bl',
+              id: 'mlkhfj',
+              allowHTML: true,
+              closeButton: true,
+              buttons: [
+                {
+                  label: 'submit'
+                }
+              ]
+            }
+          ]
+        }
+      />
+    </Provider>
+  )
+},{
+  info: {
+    inline: true,
+    source: false,
+    propTables: false,
+  }
+});
