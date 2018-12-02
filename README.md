@@ -177,11 +177,11 @@ const sendResetPasswordLink = (props) => (dispatch) => {
 | dismissible  | Boolean          | true    | Define if a notification is dismissible by clicking on it |
 | dismissAfter | Number           | 5000    | Time before the notification disappear (ms). Paused when mouse is hovering the notification. 0: infinite. |
 | closeButton  | Boolean          | false   | Display a close button if it is dismissible |
-| buttons      | Array            |         | Array of [button](https://github.com/zakariaharti/react-awesome-notifications/blob/master/README.md#notification-button) objects. |
+| buttons      | Array            |         | Array of [button](https://github.com/zakariaharti/react-awesome-notifications#notification-button) objects. |
 | onMounted        | Function         |         | Function executed at component lifecycle : `componentDidMount` |
 | onUnmounted     | Function         |         | Function executed at component lifecycle : `componentWillUnmount` |
 | allowHTML    | Boolean          | false   | Allow HTML in title and message of the notification |
-| extendStyles      | Object            |         | add custom styles to the notification see. [ExtendStyles](https://github.com/zakariaharti/react-awesome-notifications#extend-styles). |
+| extendStyles      | Object            |         | add custom styles to the notification see. [ExtendStyles](https://github.com/zakariaharti/react-awesome-notifications#extendstyles). |
 
 #### Notification button
 
@@ -380,9 +380,9 @@ removeAllNotifications();
 
 ### Customize styling
 
-you can add custom styles using [ExtendStyles](https://github.com/zakariaharti/react-awesome-notifications#extend-styles) property . because this package uses [styled components](https://styled-components.com) for apply styles to the final ui so you can use the power of styled components.
+you can add custom styles using [ExtendStyles](https://github.com/zakariaharti/react-awesome-notifications#extendstyles) property . because this package uses [styled components](https://styled-components.com) for apply styles to the final ui so you can use the power of styled components.
 
-#### Example usage of the [ExtendStyles](https://github.com/zakariaharti/react-awesome-notifications#extend-styles) property
+#### Example usage of the [ExtendStyles](https://github.com/zakariaharti/react-awesome-notifications#extendstyles) property
 
 ``` js
 import { notify } from 'react-awesome-notifications';
