@@ -13,13 +13,14 @@ const StyledContainer = styled.div`
 const StyledButton = styled.button`
 padding: 15px 40px;
 border: 2px solid;
+outline: none;
 text-transform: capitalize;
 color: #ffffff;
 background: #fd387b;
 font-size: 1.4em;
 border-radius: 3px;
 cursor: pointer;
-transition: .3s ease-in;
+transition: .1s ease-in;
 
 &:hover{
   background: #de316c;
@@ -30,32 +31,15 @@ transition: .3s ease-in;
 `;
 
 interface IPlayGround{
+  nots: ReactNotifiable.INotification[];
   addNotification?: (not: any) => void;
 };
 
 class PlayGround extends React.Component<IPlayGround>{
 
   addNotification = () => {
-    this.props.addNotification({
-      level: ReactNotifiable.notificationLevel.PRIMARY,
-      dismissAfter: 0,
-      dismissible: true,
-      title: 'a new react.js version has been released',
-      message: 'a new react.js version has been released',
-      position: 'bc',
-      id: 'mlk',
-      allowHTML: true,
-      closeButton: true,
-      buttons: [
-        {
-          label: 'submit'
-        }
-      ],
-      extendStyles: {
-        notificationWrapper: `
-          background: pink
-        `
-      }
+    this.props.nots.map(not => {
+      this.props.addNotification(not);
     });
   }
 

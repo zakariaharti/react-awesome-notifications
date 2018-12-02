@@ -15,7 +15,28 @@ const stories = storiesOf('Notification component', module).addDecorator(withInf
 stories.add('first example',() => {
   return(
     <Provider store={store}>
-      <PlayGround />
+      <PlayGround
+        nots={
+          [
+            {
+              level: ReactNotifiable.notificationLevel.PRIMARY,
+              dismissAfter: 0,
+              dismissible: true,
+              title: 'a new react.js version has been released',
+              message: 'a new react.js version has been released',
+              position: 'bc',
+              id: 'mlk',
+              allowHTML: true,
+              closeButton: true,
+              buttons: [
+                {
+                  label: 'submit'
+                }
+              ]
+            }
+          ]
+        }
+      />
     </Provider>
   )
 },{

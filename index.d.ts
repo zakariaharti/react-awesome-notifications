@@ -4,16 +4,16 @@ declare namespace ReactNotifiable {
     title?: string;
     message?: string;
     level: 'primary' | 'success' | 'info' | 'warning' | 'error';
-    position: ReactNotifiable.notificationPosition;
+    position: ReactNotifiable.notificationPosition | string;
     dismissAfter: number | null;
     dismissible: boolean;
     onMounted?: () => void;
     onUnmounted?: () => void;
     closeButton?: boolean;
     buttons?: {
-      id: any;
+      id?: any;
       label: string,
-      action: () => void,
+      action?: () => void,
       customClass?: string;
     }[];
     allowHTML?: boolean;
