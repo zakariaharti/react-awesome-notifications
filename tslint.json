@@ -4,10 +4,24 @@
     "exclude": [
       "config/**/*.js",
       "node_modules/**/*.ts",
-      "coverage/lcov-report/*.js"
+      "coverage/lcov-report/*.js",
+      "src/**/*.spec.(ts|tsx)",
+      "src/helpers/configureTests.ts",
+      "src/helpers/**",
+      "src/store/**",
+      "src/types/**",
+      "src/**"
     ]
   },
   "rules": {
+    "trailing-comma": false,
+    "triple-equals": false,
+    "semicolon": false,
+    "quotemark": false,
+    "whitespace": false,
+    "no-consecutive-blank-lines": false,
+    "curly": false,
+    "arrow-parens": false,
     "no-unused-expression": false,
     "ordered-imports": false,
     "object-literal-sort-keys": false,

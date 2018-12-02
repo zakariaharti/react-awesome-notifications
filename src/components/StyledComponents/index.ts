@@ -26,7 +26,7 @@ export const StyledNotificationContainer = StyledTs<{position: string}>(styled.d
   z-index:  99999;
   width: var(--max-notification-width);
   padding: 13px 0;
-  ${props => {
+  ${(props: any) => {
     if(props.position == 'tc'){
       return`
         top: 20px;
@@ -73,7 +73,7 @@ export const StyledNotificationContainer = StyledTs<{position: string}>(styled.d
   }}
 
   .notification-wrapper-enter{
-    ${props => {
+    ${(props: any) => {
       if(props.position == 'tr' || props.position == 'br'){
         return `
           transform: translateX(80em);
@@ -105,7 +105,7 @@ export const StyledNotificationContainer = StyledTs<{position: string}>(styled.d
     }}
   }
   .notification-wrapper-enter-active{
-    ${props => {
+    ${(props: any) => {
       if(props.position == 'tr' || props.position == 'br'){
         return `
           transform: translateX(0em);
@@ -130,7 +130,7 @@ export const StyledNotificationContainer = StyledTs<{position: string}>(styled.d
     }}
   }
   .notification-wrapper-exit{
-    ${props => {
+    ${(props: any) => {
       if(props.position == 'tr' || props.position == 'br'){
         return `
           transform: translateX(0em);
@@ -155,7 +155,7 @@ export const StyledNotificationContainer = StyledTs<{position: string}>(styled.d
     }}
   }
   .notification-wrapper-exit-active{
-    ${props => {
+    ${(props: any) => {
       if(props.position == 'tr' || props.position == 'br'){
         return `
           transform: translateX(80em);
@@ -202,7 +202,7 @@ export const StyledNotification = StyledTs<IStyledNotification>(styled.div)`
   border:     none;
   box-shadow: 0 1px 3px -1px rgba(0, 0, 0, 0.3);
   z-index:    999;
-  cursor: ${props => props.dismissible ? 'pointer' : 'default'};
+  cursor: ${(props: any) => props.dismissible ? 'pointer' : 'default'};
   ${MixinNotificationVariant}
 
   .container{
@@ -230,7 +230,7 @@ export const StyledNotification = StyledTs<IStyledNotification>(styled.div)`
       font-size: 1.5em;
       cursor: pointer;
       transition: .2s ease-in;
-      color: ${props => {
+      color: ${(props: any) => {
         if(props.level == 'primary') return '#888888';
         return '#888888';
       }};
@@ -297,7 +297,7 @@ export const StyledButton = StyledTs<{position?: string,level?: string}>(styled.
    min-height: 30px;
    box-sizing: border-box;
    padding: 0;
-   background: ${props => {
+   background: ${(props: any) => {
      if(props.level == 'primary') return '#a2a2a2';
      if(props.level == 'success') return '#6c9838';
      if(props.level == 'info') return '#3c9dca';
@@ -310,7 +310,7 @@ export const StyledButton = StyledTs<{position?: string,level?: string}>(styled.
    border-left: 1px solid rgba(0, 0, 0, 0.09);
    outline: none;
    text-align: center;
-   color: ${props => {
+   color: ${(props: any) => {
      if(props.level == 'primary') return '#524c4c';
      return '#e6e6e6';
    }};
@@ -334,7 +334,7 @@ export const StyledButton = StyledTs<{position?: string,level?: string}>(styled.
    }
 
    &:hover {
-      background: ${props => {
+      background: ${(props: any) => {
         if(props.level == 'primary') return '#969696';
         if(props.level == 'success') return '#709c3d';
         if(props.level == 'info') return '#3594bf';

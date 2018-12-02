@@ -55,11 +55,14 @@
   },
   "dependencies": {
     "react": "^16.5.2",
+    "react-dom": "^16.5.2",
+    "react-icons": "^3.2.1",
     "react-redux": "^5.1.1",
     "react-transition-group": "^2.5.0",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0",
     "styled-components": "^4.0.0",
+    "styled-components-ts": "^0.0.14"
   },
   "scripts": {
     "webpack": "webpack --config webpack.common.js",
