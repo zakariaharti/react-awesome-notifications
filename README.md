@@ -63,19 +63,22 @@ class ATopLevelComponent extends Component {
 
 
 ``` js
-import {createStore, compose, applyMiddleware} from 'redux';
+import {createStore, combineReducers, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
-import {reducer as notificationsReducer} from 'react-awesome-notifications';
+import {Provider} from 'react-redux';
 
-// store
-const createStoreWithMiddleware = compose(
-  applyMiddleware(thunk)
-)(createStore);
-const store = createStoreWithMiddleware(combineReducers({
-  // reducer must be mounted as `notifications` !
-  notifications: notificationsReducer()
-  // your reducers here
-}), {});
+import {
+  reducer as notificationsReducer,
+} from 'react-awesome-notifications';
+
+const reducers = combineReducers({
+  // notifications reducer must be 'notifications'
+  notifications: notificationsReducer,
+  // your reducers
+  {...}
+});
+
+const store = createStore(reducers, applyMiddleware(thunk));
 ```
 > notice: reducer must be mounted as notifications
 
@@ -100,7 +103,7 @@ class MyComponent extends Component {
 
   _onClick() {
     const {addNotification} = this.props;
-    // 3. we use `notify` to create a notification
+    // 3. we use `addNotification` to create a notification
     addNotification({
       title: 'Welcome',
       message: 'you clicked on the button',
