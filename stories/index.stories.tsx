@@ -9,10 +9,10 @@ import store from './store';
 import PlayGround from './playGround';
 
 // @ts-ignore
-const stories = storiesOf('Notification component', module).addDecorator(withInfo);
+const stories = storiesOf('React awesome notifications', module).addDecorator(withInfo);
 
 // @ts-ignore
-stories.add('first example',() => {
+stories.add('welcome',() => {
   return(
     <Provider store={store}>
       <PlayGround
@@ -77,59 +77,65 @@ stories.add('first example',() => {
     source: false,
     propTables: false,
     text: `
+      ## Description
+      see more on [react-awesome-notifications](https://github.com/zakariaharti/react-awesome-notifications.git)
+
+      ## Installing
+          yarn add react-awesome-notifications
+
       ## Example code
 
 
            import NotificationSystem from 'react-awesome-notifications';
            import {connect} from 'react-redux';
 
-           class MyComponent extends React.Component>{
+           class MyComponent extends React.Component{
 
-           state = {
-            nots: [
+             state = {
+              nots: [
+                {
+                 level: 'primary',
+                 dismissAfter: 0,
+                 dismissible: true,
+                 title: 'a new react.js version has been released',
+                 message: 'a new react.js version has been released',
+                 position: 'tr',
+                 id: 'mlk',
+                 allowHTML: true,
+                 closeButton: true,
+                 buttons: [
+                  {
+                    label: 'submit'
+                  }
+                ]
+              },
               {
-                level: 'primary',
+                level: 'info',
                 dismissAfter: 0,
                 dismissible: true,
-                title: 'a new react.js version has been released',
+                title: 'it\'s been a while no see',
                 message: 'a new react.js version has been released',
-                position: 'tr',
-                id: 'mlk',
+                position: 'bl',
+                id: 'mlkfg',
                 allowHTML: true,
                 closeButton: true,
                 buttons: [
-                 {
-                   label: 'submit'
-                 }
-               ]
-             },
-             {
-               level: 'info',
-               dismissAfter: 0,
-               dismissible: true,
-               title: 'it\'s been a while no see',
-                message: 'a new react.js version has been released',
-               position: 'bl',
-               id: 'mlkfg',
-               allowHTML: true,
-               closeButton: true,
-               buttons: [
                 {
                   label: 'show'
                 }
               ]
-            },
-            {
-              level: 'success',
-              dismissAfter: 0,
-              dismissible: true,
-              title: 'it\'s been a while no see',
-              message: 'a new react.js version has been released',
-              position: 'bl',
-              id: 'mlkfghj',
-              allowHTML: true,
-              closeButton: true,
-              buttons: [
+             },
+             {
+               level: 'success',
+               dismissAfter: 0,
+               dismissible: true,
+               title: 'it\'s been a while no see',
+               message: 'a new react.js version has been released',
+               position: 'bl',
+               id: 'mlkfghj',
+               allowHTML: true,
+               closeButton: true,
+               buttons: [
                 {
                   label: 'show'
                 }
@@ -159,4 +165,7 @@ stories.add('first example',() => {
 
     `
   }
-})
+});
+
+// @ts-ignore
+const stories2 = storiesOf('React awesome notifications/Examples', module).addDecorator(withInfo);
