@@ -65,6 +65,22 @@ stories.add('welcome',() => {
                   label: 'show'
                 }
               ]
+            },
+            {
+              level: ReactNotifiable.notificationLevel.WARNING,
+              dismissAfter: 0,
+              dismissible: true,
+              title: 'a new react.js version has been released',
+              message: 'a new react.js version has been released',
+              position: 'tr',
+              id: 'mlk',
+              allowHTML: true,
+              closeButton: true,
+              buttons: [
+                {
+                  label: 'submit'
+                }
+              ]
             }
           ]
         }
@@ -481,6 +497,51 @@ stories.add('with action buttons',() => {
                   action: () => action('you clicked me again')
                 }
               ]
+            }
+          ]
+        }
+      />
+    </Provider>
+  )
+},{
+  info: {
+    inline: true,
+    source: false,
+    propTables: false,
+  }
+});
+
+// @ts-ignore
+stories.add('with custom styles',() => {
+  return(
+    <Provider store={store}>
+      <PlayGround
+        nots={
+          [
+            {
+              level: ReactNotifiable.notificationLevel.INFO,
+              dismissAfter: 0,
+              dismissible: true,
+              title: 'notification with custom styles',
+              message: 'here is the body',
+              position: 'tl',
+              id: 'mlk',
+              allowHTML: true,
+              closeButton: true,
+              buttons: [
+                {
+                  label: 'print',
+                  action: () => action('you clicked me')
+                }
+              ],
+              extendStyles: {
+                notificationWrapper: `
+                  background: pink;
+                `,
+                notificationTitle: `
+                  color: red;
+                `
+              }
             }
           ]
         }

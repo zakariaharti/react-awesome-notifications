@@ -18,11 +18,11 @@ declare namespace ReactNotifiable {
     }[];
     allowHTML?: boolean;
     extendStyles?: {
-      notificationWrapper: string;
-      notificationTitle: string;
-      notificationMessage: string;
-      notificationButtonsContainer: string;
-      notificationButton: string;
+      notificationWrapper?: string;
+      notificationTitle?: string;
+      notificationMessage?: string;
+      notificationButtonsContainer?: string;
+      notificationButton?: string;
     };
   }
 
