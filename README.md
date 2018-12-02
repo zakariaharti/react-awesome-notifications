@@ -161,6 +161,7 @@ const sendResetPasswordLink = (props) => (dispatch) => {
     * [Remove a notification](https://github.com/zakariaharti/react-awesome-notifications#remove-a-notification)
     * [Remove all notifications](https://github.com/zakariaharti/react-awesome-notifications#remove-all-notifications)
 * [Notification system component](https://github.com/zakariaharti/react-awesome-notifications#notification-system-component)
+* [Customize styling](https://github.com/zakariaharti/react-awesome-notifications#customize-styling)
 
 ### Objects
 
@@ -361,6 +362,86 @@ Removes all notifications.
 
 ``` js
 removeAllNotifications();
+```
+
+### Notifications system component
+
+| Property | Type     | Default | Description |
+| -------- | -------- | ------- | ----------- |
+| filter   | Function | null    | Filter notifications to display. Can be useful to display some notifications with another component, like modal notifications or banner notifications. |
+
+#### Example
+
+``` html
+<NotificationsSystem 
+  filter={notif => notif.style !== 'banner'} 
+/>
+```
+
+### Customize styling
+
+you can add custom styles using [ExtendStyles](https://github.com/zakariaharti/react-awesome-notifications#extend-styles) property . because this package uses [styled components](https://styled-components.com) for apply styles to the final ui so you can use the power of styled components.
+
+#### Example usage of the [ExtendStyles](https://github.com/zakariaharti/react-awesome-notifications#extend-styles) property
+
+``` js
+import { notify } from 'react-awesome-notifications';
+
+let not = {
+  id: 123,
+  title: 'my title',
+  message: 'my message',
+  buttons: [
+    {
+      label: 'submit'
+    }
+  ],
+  // custom styles
+  extendStyles: {
+    // customize styles for the notification wrapper
+    // features: & parent placeholder, nesting, nesting classes..., any feature of styled-components
+    notificationWrapper: `
+      background-color: pink;
+      padding: 20px;
+      
+      .notification-close-btn{
+        .close-btn{
+          padding: 10px;
+          
+          &:hover{
+            color: red;
+          }
+        }
+      }
+    `,
+    notificationTitle: ``;
+    notificationMessage: ``;
+    notificationButtonsContainer: ``;
+    notificationButton: ``;
+  }
+};
+```
+#### Final rendred markup
+
+``` html
+<div class="notification-wrapper">
+        <div className='container'>
+          <div className="notification-content">
+              <div>
+                 {title}
+              </div>
+              <div>
+                 {message}
+               </div>
+          </div>
+          <div className='notification-close-btn'>
+             <span className="close-btn">&times;</span>
+          </div>
+          <div class='notification-button'>
+            <span className="btn-text">{button.label}</span>
+          </div>
+        </div>
+</div>
 ```
 
 ## Contributing guide
