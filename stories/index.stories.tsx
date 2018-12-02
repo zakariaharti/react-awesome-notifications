@@ -72,7 +72,7 @@ stories.add('welcome',() => {
               dismissible: true,
               title: 'a new react.js version has been released',
               message: 'a new react.js version has been released',
-              position: 'tr',
+              position: 'bl',
               id: 'mlk',
               allowHTML: true,
               closeButton: true,
