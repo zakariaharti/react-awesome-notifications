@@ -1,9 +1,9 @@
 # React-awesome-notifications
 [![npm](https://img.shields.io/npm/v/react-awesome-notifications.svg?style=for-the-badge)](https://www.npmjs.com/package/react-awesome-notifications)
- [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=for-the-badge)](http://makeapullrequest.com) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=for-the-badge)](https://github.com/zakariaharti/react-awesome-notifications/blob/master/LICENSE)
+ [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=for-the-badge)](https://github.com/zakariaharti/react-awesome-notifications/blob/master/LICENSE)
 [![npm](https://img.shields.io/npm/dw/react-awesome-notifications.svg?style=for-the-badge)](https://www.npmjs.com/package/react-awesome-notifications)
-[![Storybook](https://github.com/storybooks/press/blob/master/badges/storybook.svg?style=for-the-badge)](https://zakariaharti.github.io/react-awesome-notifications/)
-[![style: styled-components](https://img.shields.io/badge/style-%F0%9F%92%85%20styled--components-orange.svg?colorB=daa357&colorA=db748e?style=for-the-badge)](https://github.com/styled-components/styled-components)
+[![Storybook](https://img.shields.io/badge/docs-storybook-pink.svg?style=for-the-badge)](https://zakariaharti.github.io/react-awesome-notifications/)
+[![style: styled-components](https://img.shields.io/badge/style-styled--components-%23d1a05c.svg?style=for-the-badge)](https://github.com/styled-components/styled-components)
 
 A beautiful fully customizable React + Redux notification System built with styled-components
 
