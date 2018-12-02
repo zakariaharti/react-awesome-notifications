@@ -1,8 +1,31 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import NotificationSystem from '../src';
+import styled from 'styled-components';
 
+import NotificationSystem from '../src';
 import { addNotification } from '../src';
+
+const StyledContainer = styled.div`
+  padding: 20px;
+  text-align: center;
+`;
+
+const StyledButton = styled.button`
+padding: 15px 40px;
+border: 2px solid;
+text-transform: capitalize;
+color: #ffffff;
+background: #fd387b;
+font-size: 1.4em;
+border-radius: 3px;
+cursor: pointer;
+transition: .3s ease-in;
+
+&:hover{
+  background: #de316c;
+  border-color: #c31852;
+}
+`;
 
 interface IPlayGround{
   addNotification?: (not: any) => void;
@@ -38,9 +61,9 @@ class PlayGround extends React.Component<IPlayGround>{
     return(
       <div>
         <NotificationSystem />
-        <div>
-          <button onClick={this.addNotification}>click me!</button>
-        </div>
+        <StyledContainer>
+          <StyledButton onClick={this.addNotification}>click me!</StyledButton>
+        </StyledContainer>
       </div>
     );
   }
