@@ -24,13 +24,45 @@ stories.add('first example',() => {
               dismissible: true,
               title: 'a new react.js version has been released',
               message: 'a new react.js version has been released',
-              position: 'bc',
+              position: 'tr',
               id: 'mlk',
               allowHTML: true,
               closeButton: true,
               buttons: [
                 {
                   label: 'submit'
+                }
+              ]
+            },
+            {
+              level: ReactNotifiable.notificationLevel.INFO,
+              dismissAfter: 0,
+              dismissible: true,
+              title: 'it\'s been a while no see',
+              message: 'a new react.js version has been released',
+              position: 'bl',
+              id: 'mlkfg',
+              allowHTML: true,
+              closeButton: true,
+              buttons: [
+                {
+                  label: 'show'
+                }
+              ]
+            },
+            {
+              level: ReactNotifiable.notificationLevel.SUCCESS,
+              dismissAfter: 0,
+              dismissible: true,
+              title: 'it\'s been a while no see',
+              message: 'a new react.js version has been released',
+              position: 'bl',
+              id: 'mlkfghj',
+              allowHTML: true,
+              closeButton: true,
+              buttons: [
+                {
+                  label: 'show'
                 }
               ]
             }

@@ -7,9 +7,9 @@ import { MixinNotificationVariant } from './mixins';
 export const GlobalStyles = createGlobalStyle`
   :root{
     --max-notification-width: 360px;
-    --primary-bg: #b9b9b9;
+    --primary-bg: #d2d2d2;
     --success-bg: #8BC34A;
-    --info-bg: #24b8fb;
+    --info-bg: #9adfff;
     --warning-bg: #ff9800;
     --error-bg: #f44336;
   }
@@ -203,6 +203,7 @@ export const StyledNotification = StyledTs<IStyledNotification>(styled.div)`
   box-shadow: 0 1px 3px -1px rgba(0, 0, 0, 0.3);
   z-index:    999;
   cursor: ${(props: any) => props.dismissible ? 'pointer' : 'default'};
+  margin: 10px 0;
   ${MixinNotificationVariant}
 
   .container{
