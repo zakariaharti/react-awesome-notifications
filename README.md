@@ -150,17 +150,17 @@ const sendResetPasswordLink = (props) => (dispatch) => {
 
 ## API Documentation
 
-* [Objects](https://github.com/zakariaharti/react-awesome-notifications/blob/master/README.md#objects)
-    * [Notification](https://github.com/zakariaharti/react-awesome-notifications/blob/master/README.md#notification)
-    * [Notification button](https://github.com/zakariaharti/react-awesome-notifications/blob/master/README.md#notification-button)
-    * [ExtendStyles](https://github.com/zakariaharti/react-awesome-notifications/blob/master/README.md#extend-styles)
-* [Action creators](https://github.com/zakariaharti/react-awesome-notifications/blob/master/README.md#action-creators)
-    * [Update or create a notification](https://github.com/zakariaharti/react-awesome-notifications/blob/master/README.md#update-or-create-a-notification)
-    * [Create a notification](https://github.com/zakariaharti/react-awesome-notifications/blob/master/README.md#create-a-notification)
-    * [Update a notification](https://github.com/zakariaharti/react-awesome-notifications/blob/master/README.md#update-a-notification)
-    * [Remove a notification](https://github.com/zakariaharti/react-awesome-notifications/blob/master/README.md#remove-a-notification)
-    * [Remove all notifications](https://github.com/zakariaharti/react-awesome-notifications/blob/master/README.md#remove-all-notifications)
-* [Notification system component](https://github.com/zakariaharti/react-awesome-notifications/blob/master/README.md#notification-system-component)
+* [Objects](https://github.com/zakariaharti/react-awesome-notifications#objects)
+    * [Notification](https://github.com/zakariaharti/react-awesome-notifications#notification)
+    * [Notification button](https://github.com/zakariaharti/react-awesome-notifications#notification-button)
+    * [ExtendStyles](https://github.com/zakariaharti/react-awesome-notifications#extend-styles)
+* [Action creators](https://github.com/zakariaharti/react-awesome-notifications#action-creators)
+    * [Update or create a notification](https://github.com/zakariaharti/react-awesome-notificationsREADME.md#update-or-create-a-notification)
+    * [Create a notification](https://github.com/zakariaharti/react-awesome-notifications#create-a-notification)
+    * [Update a notification](https://github.com/zakariaharti/react-awesome-notifications#update-a-notification)
+    * [Remove a notification](https://github.com/zakariaharti/react-awesome-notifications#remove-a-notification)
+    * [Remove all notifications](https://github.com/zakariaharti/react-awesome-notifications#remove-all-notifications)
+* [Notification system component](https://github.com/zakariaharti/react-awesome-notifications#notification-system-component)
 
 ### Objects
 
@@ -180,6 +180,188 @@ const sendResetPasswordLink = (props) => (dispatch) => {
 | onMounted        | Function         |         | Function executed at component lifecycle : `componentDidMount` |
 | onUnmounted     | Function         |         | Function executed at component lifecycle : `componentWillUnmount` |
 | allowHTML    | Boolean          | false   | Allow HTML in title and message of the notification |
+| extendStyles      | Object            |         | add custom styles to the notification see. [ExtendStyles](https://github.com/zakariaharti/react-awesome-notifications#extend-styles). |
+
+#### Notification button
+
+| Property     | Type     | Default | Description |
+| ------------ | :------: | :-----: | ----------- |
+| label         | String   |         | Title of the button |
+| action      | Function |         | Function executed when user click on it |
+
+#### ExtendStyles
+
+| Property     | Type     | Default | Description |
+| ------------ | :------: | :-----: | ----------- |
+| notificationWrapper         | String   |         | Add custom styles for the notification wrapper |
+| notificationTitle         | String   |         | Add custom styles for the notification title |
+| notificationMessage         | String   |         | Add custom styles for the notification message |
+| notificationButtonsContainer         | String   |         | Add custom styles for the notification buttons container |
+| notificationButton         | String   |         | Add custom styles for the notification button |
+
+### Action creators
+
+#### Update or create a notification
+
+Updates a notification if it does exist or creates it. It returns the notification just updated or created.
+**You basically want to use this function all the time to update and create notifications.**
+
+##### Syntax
+
+``` js
+notify(notification);
+```
+
+##### Parameters
+
+| Parameter    | Type     | Description |
+| ------------ | -------- | ----------- |
+| notification | Object   | A [notification](https://github.com/zakariaharti/react-awesome-notifications#notification) object |
+
+
+##### Example
+
+``` js
+// add a notification
+let notif = notify({
+  title: 'Upload status',
+  message: 'Your file is uploading...',
+  level: 'info',
+  dismissible: false,
+  dismissAfter: 0
+});
+
+// simulate file upload
+setTimeout(function() {
+  notif.level = 'success';
+  notif.message = 'Your file has been successfully uploaded';
+  notif.dismissible = true;
+  notif.dismissAfter = 5000;
+  // update the notification
+  notify(notif);
+}, 10000);
+```
+
+#### Create a notification
+
+Creates a notification and returns it.
+
+##### Syntax
+
+``` js
+addNotification(notification);
+```
+
+##### Parameters
+
+| Parameter    | Type     | Description |
+| ------------ | -------- | ----------- |
+| notification | Object   | A [notification](https://github.com/zakariaharti/react-awesome-notifications#notification) object |
+
+##### Example
+
+``` js
+const notif = addNotification({
+  title: 'Welcome on demo!',
+  message: 'Hey buddy, here you can see what you can do with it.',
+  position: 'br',
+  level: 'info',
+  dismissAfter: 10000,
+  dismissible: false,
+  onMounted: function() {
+    console.log('hey buddy');
+  },
+  onUnmounted: function() {
+      console.log('cya buddy');
+  },
+  buttons:[{
+    label: 'OK',
+    action: () => {
+      console.log('i\'m OK too');
+    }
+  }] 
+});
+console.log(JSON.stringify(notif));
+/*
+{
+  "id":1463345312016,
+  "title":"Welcome on demo!",
+  "message":"Hey buddy, here you can see what you can do with it.",
+  "position":"br",
+  "level":"info",
+  "dismissAfter":10000,
+  "dismissible":false,
+  "buttons":[{
+    "label":"OK",
+  }]
+}
+*/
+
+```
+
+#### Update a notification
+
+Updates a notification and returns it. If the notification has been removed, it will not display it again.
+
+##### Syntax
+
+``` js
+updateNotification(notification);
+```
+
+##### Parameters
+
+| Parameter    | Type     | Description |
+| ------------ | -------- | ----------- |
+| notification | Object   | A [notification](https://github.com/zakariaharti/react-awesome-notifications#notification) object |
+
+
+##### Example
+
+``` js
+let notif = addNotification({
+  title: 'Upload status',
+  message: 'Your file is uploading...',
+  level: 'info',
+  dismissible: false,
+  dismissAfter: 0
+});
+
+// simulate file upload
+setTimeout(function() {
+  notif.level = 'success';
+  notif.message = 'Your file has been successfully uploaded';
+  notif.dismissible = true;
+  notif.dismissAfter = 5000;
+  updateNotification(notif);
+}, 10000);
+```
+
+#### Remove a notification
+
+Removes a notification.
+
+##### Syntax
+
+``` js
+removeNotification(id);
+```
+
+##### Parameters
+
+| Parameter   | Type   | Description |
+| ----------- | ------ | ----------- |
+| id          | String or Number | ID of the notification |
+
+#### Remove all notifications
+
+Removes all notifications.
+
+##### Syntax
+
+``` js
+removeAllNotifications();
+```
 
 ## Contributing guide
 
