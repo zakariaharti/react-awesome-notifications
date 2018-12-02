@@ -150,7 +150,36 @@ const sendResetPasswordLink = (props) => (dispatch) => {
 
 ## API Documentation
 
-Read [API documentation](https://github.com/zakariaharti/react-awesome-notifications/blob/master/docs/api.md) to discover all possibilities.
+* [Objects](https://github.com/zakariaharti/react-awesome-notifications/blob/master/README.md#objects)
+    * [Notification](https://github.com/zakariaharti/react-awesome-notifications/blob/master/README.md#notification)
+    * [Notification button](https://github.com/zakariaharti/react-awesome-notifications/blob/master/README.md#notification-button)
+    * [ExtendStyles](https://github.com/zakariaharti/react-awesome-notifications/blob/master/README.md#extend-styles)
+* [Action creators](https://github.com/zakariaharti/react-awesome-notifications/blob/master/README.md#action-creators)
+    * [Update or create a notification](https://github.com/zakariaharti/react-awesome-notifications/blob/master/README.md#update-or-create-a-notification)
+    * [Create a notification](https://github.com/zakariaharti/react-awesome-notifications/blob/master/README.md#create-a-notification)
+    * [Update a notification](https://github.com/zakariaharti/react-awesome-notifications/blob/master/README.md#update-a-notification)
+    * [Remove a notification](https://github.com/zakariaharti/react-awesome-notifications/blob/master/README.md#remove-a-notification)
+    * [Remove all notifications](https://github.com/zakariaharti/react-awesome-notifications/blob/master/README.md#remove-all-notifications)
+* [Notification system component](https://github.com/zakariaharti/react-awesome-notifications/blob/master/README.md#notification-system-component)
+
+### Objects
+
+#### Notification
+
+| Property     | Type             | Default | Description |
+| ------------ | ---------------- | ------- | ----------- |
+| id           | String or Number |         | ID of the notification. If not provided during creation, will be generated automatically using the universal id. |
+| title        | String           |         | Title of the notification |
+| message      | String           |         | Message of the notification |
+| level       | String | primary | level of the notification, available options : primary, info, success, warning, error.|
+| position     | String           | tr      | Position of the notification, available options : `tc`, `tl`, `tr`, `bc`, `br`, `bl`. |
+| dismissible  | Boolean          | true    | Define if a notification is dismissible by clicking on it |
+| dismissAfter | Number           | 5000    | Time before the notification disappear (ms). Paused when mouse is hovering the notification. 0: infinite. |
+| closeButton  | Boolean          | false   | Display a close button if it is dismissible |
+| buttons      | Array            |         | Array of [button](https://github.com/zakariaharti/react-awesome-notifications/blob/master/README.md#notification-button) objects. |
+| onMounted        | Function         |         | Function executed at component lifecycle : `componentDidMount` |
+| onUnmounted     | Function         |         | Function executed at component lifecycle : `componentWillUnmount` |
+| allowHTML    | Boolean          | false   | Allow HTML in title and message of the notification |
 
 ## Contributing guide
 
