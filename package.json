@@ -1,12 +1,26 @@
 {
   "name": "react-awesome-notifications",
   "version": "2.0.0",
-  "main": "./build/index.js",
+  "main": "build/index.js",
   "repository": "https://github.com/zakariaharti/react-awesome-notifications.git",
   "author": "zakaria harti <zakariya.harti@gmail.com> (https://github.com/zakariaharti)",
   "license": "MIT",
-  "description": "A beautiful fully customizable React notification Component",
+  "description": "A beautiful fully customizable React + Redux notification system",
   "private": false,
+  "keywords": [
+    "react-awesome-notifications",
+    "react",
+    "redux",
+    "styled-components",
+    "notifications",
+    "notification",
+    "component"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zakariaharti/react-awesome-notifications/issues"
+  },
+  "homepage": "https://github.com/zakariaharti/react-awesome-notifications#readme",
   "devDependencies": {
     "@storybook/addon-actions": "^4.0.4",
     "@storybook/addon-info": "^4.0.0",
@@ -55,7 +69,6 @@
   },
   "dependencies": {
     "react": "^16.5.2",
-    "react-dom": "^16.5.2",
     "react-icons": "^3.2.1",
     "react-redux": "^5.1.1",
     "react-transition-group": "^2.5.0",
