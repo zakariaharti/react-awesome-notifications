@@ -25,7 +25,7 @@ stories.add('welcome',() => {
               title: 'a new react.js version has been released',
               message: 'a new react.js version has been released',
               position: 'tr',
-              id: 'mlk',
+              id: 'mlk8',
               allowHTML: true,
               closeButton: true,
               buttons: [
@@ -41,7 +41,7 @@ stories.add('welcome',() => {
               title: 'it\'s been a while no see',
               message: 'a new react.js version has been released',
               position: 'bl',
-              id: 'mlkfg',
+              id: 'mlkfg6',
               allowHTML: true,
               closeButton: true,
               buttons: [
@@ -57,7 +57,7 @@ stories.add('welcome',() => {
               title: 'it\'s been a while no see',
               message: 'a new react.js version has been released',
               position: 'bl',
-              id: 'mlkfghj',
+              id: 'mlkfghj4',
               allowHTML: true,
               closeButton: true,
               buttons: [
@@ -72,8 +72,8 @@ stories.add('welcome',() => {
               dismissible: true,
               title: 'a new react.js version has been released',
               message: 'a new react.js version has been released',
-              position: 'bl',
-              id: 'mlk',
+              position: 'br',
+              id: 'mlkgj22',
               allowHTML: true,
               closeButton: true,
               buttons: [
