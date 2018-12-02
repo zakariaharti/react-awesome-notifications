@@ -38,16 +38,12 @@ class PlayGround extends React.Component<IPlayGround>{
     return(
       <div>
         <NotificationSystem />
-        <button onClick={this.addNotification}>click me!</button>
+        <div>
+          <button onClick={this.addNotification}>click me!</button>
+        </div>
       </div>
     );
   }
 }
-
-/*const mapDispatchToProps = (dispatch: any, ownProps: IPlayGroundState) => {
-  return{
-    addNotification: dispatch(addNotification(ownProps.notification)),
-  }
-}*/
 // @ts-ignore
 export default connect(undefined, {addNotification})(PlayGround);

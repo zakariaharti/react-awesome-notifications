@@ -24,7 +24,7 @@ stories.add('first example',() => {
     source: false,
     propTables: false,
     text: `
-      description or documentation about my component, supports markdown
+      ## Example code
     `
   }
 })
