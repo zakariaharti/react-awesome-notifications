@@ -8,9 +8,13 @@ import {
   GlobalStyles
 } from './StyledComponents';
 
-interface NotificationContainerProps{
+interface NotificationSystemProps{
   notifications: ReactNotifiable.INotification[];
   filter: () => void;
+}
+
+interface NotificationSystemState{
+  windowWidth: number | any;
 }
 
 /**
@@ -18,11 +22,40 @@ interface NotificationContainerProps{
  *
  * @author zakaria harti
  */
-export class NotificationSystem extends React.Component<NotificationContainerProps> {
+export class NotificationSystem extends React.Component<NotificationSystemProps,NotificationSystemState> {
 
-  static defaultProps: Partial<NotificationContainerProps> = {
+  state: NotificationSystemState = {
+    windowWidth: window.innerWidth
+  };
+
+  static defaultProps: Partial<NotificationSystemProps> = {
     notifications: []
+  };
+
+  /**
+   * Add resize listener to update window width when the window is resized
+   * @returns {void}
+   */
+  componentDidMount() {
+    window.addEventListener('resize', this.updateWindowWidth);
   }
+
+  /**
+   * Remove resize listener
+   * @returns {void}
+   */
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.updateWindowWidth);
+  }
+
+  /**
+   * Update window width
+   * @returns {void}
+   * @private
+   */
+  private updateWindowWidth = () => {
+    this.setState({windowWidth: window.innerWidth});
+  };
 
   /**
    * render Notification Containers
@@ -39,6 +72,16 @@ export class NotificationSystem extends React.Component<NotificationContainerPro
 
     if(filter && typeof filter === 'function'){
       notifications = notifications.filter(filter);
+    }
+
+    if (this.state.windowWidth < 768) {
+      return (
+        <NotificationContainer
+          key={768}
+          position={ReactNotifiable.notificationPosition.TOP_RIGHT}
+          notifications={notifications}
+        />
+      );
     }
 
     containers.push(positions.map(position => {

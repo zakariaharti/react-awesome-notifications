@@ -70,7 +70,17 @@ export const StyledNotificationContainer = StyledTs<{position: string}>(styled.d
       top:   20px;
       right: 20px;
     `;
-  }}
+  }};
+
+  @media (max-width: 768px) {
+      width: 100%;
+      top:   0;
+      left:  0;
+
+      .notification-wrapper {
+          margin: 0;
+      }
+  }
 
   .notification-wrapper-enter{
     ${(props: any) => {
