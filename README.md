@@ -1,5 +1,7 @@
 # React-awesome-notifications
 [![Build Status](https://img.shields.io/travis/npm/npm/latest.svg?style=flat-square)](https://travis-ci.org/npm/npm) [![npm](https://img.shields.io/npm/v/npm.svg?style=flat-square)](https://www.npmjs.com/package/react-awesome-notifications) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/zakariaharti/react-awesome-notifications/blob/master/LICENSE)
+
+[![DUB](https://img.shields.io/dub/dw/vibe-d.svg)](https://www.npmjs.com/package/react-awesome-notifications)
 [![Storybook](https://github.com/storybooks/press/blob/master/badges/storybook.svg)](https://zakariaharti.github.io/react-awesome-notifications/)
 [![style: styled-components](https://img.shields.io/badge/style-%F0%9F%92%85%20styled--components-orange.svg?colorB=daa357&colorA=db748e)](https://github.com/styled-components/styled-components)
 
