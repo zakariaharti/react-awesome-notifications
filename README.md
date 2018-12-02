@@ -1,6 +1,6 @@
 # React-awesome-notifications
 [![npm](https://img.shields.io/npm/v/react-awesome-notifications.svg?style=for-the-badge)](https://www.npmjs.com/package/react-awesome-notifications)
- [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=for-the-badge)](https://github.com/zakariaharti/react-awesome-notifications/blob/master/LICENSE)
+ [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=for-the-badge)](https://github.com/zakariaharti/react-awesome-notifications/blob/master/LICENSE.md)
 [![npm](https://img.shields.io/npm/dw/react-awesome-notifications.svg?style=for-the-badge)](https://www.npmjs.com/package/react-awesome-notifications)
 [![Storybook](https://img.shields.io/badge/docs-storybook-pink.svg?style=for-the-badge)](https://zakariaharti.github.io/react-awesome-notifications/)
 [![style: styled-components](https://img.shields.io/badge/style-styled--components-%23d1a05c.svg?style=for-the-badge)](https://github.com/styled-components/styled-components)
