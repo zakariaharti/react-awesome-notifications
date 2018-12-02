@@ -446,8 +446,57 @@ let not = {
 
 ## Contributing guide
 
-Read [Contributing guide](https://github.com/zakariaharti/react-awesome-notifications/blob/master/CONTRIBUTING.md)
+All kinds of contributions (enhancements, new features, stories, documentation & bugs reporting) are welcome.
+
+### Setting up your environment
+
+```
+# clone repository
+https://github.com/zakariaharti/react-awesome-notifications.git
+
+cd react-awesome-notifications
+
+# install dependencies
+
+** yarn **
+yarn install
+
+** npm **
+npm install
+
+# Launch demo at http://localhost:6006
+npm start
+```
+
+Here is the list of the available npm scripts :
+
+| `npm run <script>`   | Description |
+| -------------------- | ----------- |
+| start                | Launch demo at http://localhost:6006 |
+| webpack              | Compile and lint code using the development env |
+| lint                 | Lint javascript files of source folder (`src`) |
+| test                 | Run tests with jest |
+| test:coverage        | Run tests with jest and generate coverage report (HTML and LCOV) |
+| build                | run build for production env  |
+| storybook            | start storybook server at http://localhost:6006 |
+| build-storybook      | build stories and generate a static files ready for deployment |
+Example :
+
+```
+npm run compile
+``` 
+
+### Pull requests  ##
+
+All pull requests must be done on the **master** branch.
+
+Before a pull request :
+
+ - Don't forget to update README or documentation if it's necessary
+ - Check code status with `npm run webpack` 
+ - Run tests with `npm run test` 
+ - If you made styles changes or any changes related to user interfaces, launch demo with `npm start` to check the result in the browser. Check it on all possible browsers that you have. (Precise the list in the PR)
 
 ## License
 
-Reapop is under [MIT License](https://github.com/zakariaharti/react-awesome-notifications/blob/master/LICENSE)
+React-awesome-notifications is under [MIT License](https://github.com/zakariaharti/react-awesome-notifications/blob/master/LICENSE)
