@@ -12,6 +12,6 @@ module.exports = {
     "js",
     "json"
   ],
-  "coverageDirectory": "/coverage",
+  "coverageDirectory": "./coverage",
   "setupTestFrameworkScriptFile": "<rootDir>src/setupTests.ts"
 };

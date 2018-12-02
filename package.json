@@ -1,6 +1,6 @@
 {
-  "name": "react-notifiable",
-  "version": "1.1.6",
+  "name": "react-awesome-notifications",
+  "version": "2.0.0",
   "main": "./build/index.js",
   "repository": "https://github.com/zakariaharti/react-awesome-notifications.git",
   "author": "zakaria harti <zakariya.harti@gmail.com> (https://github.com/zakariaharti)",
@@ -71,6 +71,7 @@
     "test": "jest --watch -o",
     "test:coverage": "jest --coverage",
     "storybook": "start-storybook -p 6006",
+    "start": "yarn storybook",
     "build-storybook": "build-storybook",
     "lint": "tslint -c tslint.json 'src/**/*.{ts,tsx}'"
   }
