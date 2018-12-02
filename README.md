@@ -5,8 +5,6 @@
 
 A beautiful fully customizable React + Redux notification System built with styled-components
 
-![Logo of the project](./screenshot.PNG)
-
 ## Table of contents
 
 * [Demo](#demo)
