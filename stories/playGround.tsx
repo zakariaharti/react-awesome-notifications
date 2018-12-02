@@ -23,6 +23,8 @@ transition: .3s ease-in;
 
 &:hover{
   background: #de316c;
+}
+&:focus{
   border-color: #c31852;
 }
 `;
