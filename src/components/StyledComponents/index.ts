@@ -76,6 +76,7 @@ export const StyledNotificationContainer = StyledTs<{position: string}>(styled.d
       width: 100%;
       top:   0;
       left:  0;
+      padding: 0;
 
       .notification-wrapper {
           margin: 0;
