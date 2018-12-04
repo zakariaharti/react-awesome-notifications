@@ -485,6 +485,7 @@ Here is the list of the available npm scripts :
 | build                | run build for production env  |
 | storybook            | start storybook server at http://localhost:6006 |
 | build-storybook      | build stories and generate a static files ready for deployment |
+
 Example :
 
 ```
